@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.dto.PostDto;
+import com.ssafy.happyhouse.model.service.AnswerService;
 import com.ssafy.happyhouse.model.service.PostService;
 
 import io.swagger.annotations.Api;
@@ -30,6 +31,9 @@ public class PostController {
 
 	@Autowired
 	PostService postService;
+	
+	@Autowired
+	AnswerService answerService;
 	
 	@PostMapping
 	private int registPost(@RequestBody PostDto post) throws Exception {
@@ -56,13 +60,16 @@ public class PostController {
 	}
 	
 	@DeleteMapping("/{num}")
+	@Transactional
 	private int postRemove(@PathVariable("num") int num) throws Exception {
 		int res = postService.removePost(num);
-		return res;
+		PostDto post = postService.getPost(num);
+		int res2 = answerService.removeAnswer(post.getAnswernum());
+		return res + res2;
 	}
 	
-	private void updateViews(int num) {
-		int views = postService.getViews(num);
-		postService.addViews(num, views + 1);
+	private int updateViews(int num) {
+		int res = postService.updateViews(num);
+		return res;
 	}
 }

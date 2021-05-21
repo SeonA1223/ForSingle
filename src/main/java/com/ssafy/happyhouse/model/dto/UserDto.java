@@ -16,7 +16,15 @@ public class UserDto {
 		super();
 	}
 
-
+	public UserDto(String id, String pwd, String name, String address, String phoneNum) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.address = address;
+		this.phoneNum = phoneNum;
+		this.isManager = 0;
+	}
 
 	public UserDto(String id, String pwd, String name, String address, String phoneNum, int isManager) {
 		super();

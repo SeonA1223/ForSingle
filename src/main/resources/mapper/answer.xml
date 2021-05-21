@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssafy.happyhouse.model.dao.AnswerDao">
+
+	<insert id="registAnswer">
+		insert into Answer (title, id, descrip)
+		values (#{title}, #{id}, #{descrip})
+		<selectKey resultType="int" keyProperty="num" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<select id="getAnswerList" resultType="AnswerDto">
+		select * from Answer
+	</select>
+	
+	<select id="getAnswer" resultType="AnswerDto">
+		select * from Answer where num=#{num}
+	</select>
+	
+	<update id="updateAnswer">
+		update Answer 
+		set title = #{title}, id= #{id}, descrip=#{descrip} 
+		where num=#{num}
+	</update>
+	
+	<delete id="removeAnswer">
+		delete from Answer where num=#{num}
+	</delete>
+
+</mapper>

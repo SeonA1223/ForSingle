@@ -15,6 +15,8 @@ public interface PostDao {
 	Integer addViews(int num, int views);
 	int getViews(int num);
 	int updatePost(PostDto post);
+	int updateAnswernum(int num, int answernum);
+	int removeAnswernum(int num);
 	int removePost(int num);
 	
 }

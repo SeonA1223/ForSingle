@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.happyhouse.model.dto.UserDto;
 import com.ssafy.happyhouse.model.service.UserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("User 컨트롤러 API V1")
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -52,6 +58,7 @@ public class UserController {
 	}
 
 	@PostMapping("")
+	@ApiOperation(value = "로그인", notes = "isManager는 1이 true, 0이 false")
 	private boolean userLogin(@RequestBody Map<String, String> map, HttpSession session,HttpServletResponse response)
 			throws IOException, ServletException {
 
@@ -66,8 +73,6 @@ public class UserController {
 		}
 
 	}
-
-
 
 	//되는지 안되는지 체크
 	@PostMapping("/signup")

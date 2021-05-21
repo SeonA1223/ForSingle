@@ -31,6 +31,18 @@
 		where num=#{num}
 	</update>
 	
+	<update id="updateAnswernum">
+		update QnA
+		set answernum = #{answernum}
+		where num = #{num}
+	</update>
+	
+	<update id="removeAnswernum">
+		update QnA
+		set answernum = null
+		where num = #{num}
+	</update>
+	
 	<delete id="removePost">
 		delete from QnA where num=#{num}
 	</delete>

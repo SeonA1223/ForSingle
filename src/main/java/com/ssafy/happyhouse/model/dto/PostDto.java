@@ -7,7 +7,32 @@ public class PostDto {
 	String id;
 	String date;
 	String descrip;
+	int answernum;
 	
+	// mapper, Dao, Service 바꾸기
+	
+	public PostDto(int num, String title, int views, String id, String date, String descrip) {
+		super();
+		this.num = num;
+		this.title = title;
+		this.views = views;
+		this.id = id;
+		this.date = date;
+		this.descrip = descrip;
+	}
+	public PostDto() {
+		super();
+	}
+	public PostDto(int num, String title, int views, String id, String date, String descrip, int answernum) {
+		super();
+		this.num = num;
+		this.title = title;
+		this.views = views;
+		this.id = id;
+		this.date = date;
+		this.descrip = descrip;
+		this.answernum = answernum;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -44,27 +69,14 @@ public class PostDto {
 	public void setDescrip(String descrip) {
 		this.descrip = descrip;
 	}
-	
-	public PostDto(int num, String title, int views, String id, String date, String descrip) {
-		super();
-		this.num = num;
-		this.title = title;
-		this.views = views;
-		this.id = id;
-		this.date = date;
-		this.descrip = descrip;
+	public int getAnswernum() {
+		return answernum;
+	}
+	public void setAnswernum(int answernum) {
+		this.answernum = answernum;
 	}
 	
 	
-	public PostDto() {
-		
-	}
-	
-	@Override
-	public String toString() {
-		return "PostDto [num=" + num + ", title=" + title + ", views=" + views + ", id=" + id + ", date=" + date
-				+ ", descrip=" + descrip + "]";
-	}
 	
 	
 }
