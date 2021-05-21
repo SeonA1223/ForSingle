@@ -11,11 +11,11 @@
 	</insert>
 	
 	<select id="getAnswerList" resultType="AnswerDto">
-		select * from Answer
+		select num, title, id, date_format(date, '%Y-%m-%d') as date, descrip from Answer
 	</select>
 	
 	<select id="getAnswer" resultType="AnswerDto">
-		select * from Answer where num=#{num}
+		select num, title, id, date_format(date, '%Y-%m-%d') as date, descrip from Answer where num=#{num}
 	</select>
 	
 	<update id="updateAnswer">

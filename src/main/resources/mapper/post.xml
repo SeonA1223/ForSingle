@@ -8,11 +8,11 @@
 	</insert>
 	
 	<select id="getPostList" resultType="PostDto">
-		select * from QnA
+		select num, title, views, id, date_format(date, '%Y-%m-%d') as date, descrip, answernum from QnA
 	</select>
 	
 	<select id="getPost" resultType="PostDto">
-		select * from QnA where num=#{num}
+		select num, title, views, id, date_format(date, '%Y-%m-%d') as date, descrip, answernum from QnA where num=#{num}
 	</select>
 	
 	<select id="addViews" resultType="Integer">

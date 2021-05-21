@@ -55,6 +55,7 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
+	@Transactional
 	public int removePost(int num) {
 		int anum = sqlSession.getMapper(PostDao.class).getPost(num).getAnswernum();
 		sqlSession.getMapper(PostDao.class).removePost(num);
