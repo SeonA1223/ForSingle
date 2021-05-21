@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CrimePopulService {
 
-	Map<String, Integer> getCrimePopul(String siname);
+	Map<String, Integer> getCrimePopul(String gugun_code);
 	
 }
