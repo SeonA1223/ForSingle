@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ssafy.happyhouse.model.dao.AnswerDao;
 import com.ssafy.happyhouse.model.dao.PostDao;
 import com.ssafy.happyhouse.model.dto.PostDto;
 
@@ -55,7 +56,9 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public int removePost(int num) {
-		return sqlSession.getMapper(PostDao.class).removePost(num);
+		int anum = sqlSession.getMapper(PostDao.class).getPost(num).getAnswernum();
+		sqlSession.getMapper(PostDao.class).removePost(num);
+		return sqlSession.getMapper(AnswerDao.class).removeAnswer(anum);
 	}
 
 }

@@ -64,9 +64,7 @@ public class PostController {
 	@ApiOperation(value = "QnA 삭제", notes = "PathVariable로 num 받음.")
 	private int postRemove(@PathVariable("num") int num) throws Exception {
 		int res = postService.removePost(num);
-		PostDto post = postService.getPost(num);
-		int res2 = answerService.removeAnswer(post.getAnswernum());
-		return res + res2;
+		return res;
 	}
 	
 	private int updateViews(int num) {
