@@ -33,6 +33,7 @@ public class AnswerController {
 	PostService postService;
 	
 	@PostMapping("/{postnum}")
+	@ApiOperation(value = "답글 등록", notes = "AnswerDto과 postnum 받음.")
 	private int registAnswer(@RequestBody AnswerDto answer, @PathVariable("postnum") int postnum) throws Exception {
 		int res = answerService.registAnswer(answer, postnum);
 		return res;
@@ -44,12 +45,14 @@ public class AnswerController {
 	}
 	
 	@GetMapping("/{num}")
+	@ApiOperation(value = "답글 1개 받기", notes = "PathVariable로 답글의 num 받음.")
 	private AnswerDto getAnswer(@PathVariable("num") int num) throws Exception{
 		AnswerDto res = answerService.getAnswer(num);
 		return res;
 	}
 	
 	@PutMapping
+	@ApiOperation(value = "답글 수정", notes = "AnswerDto 받음.")
 	private int updateAnswer(@RequestBody AnswerDto answer) throws Exception {
 		int res = answerService.updateAnswer(answer);
 		return res;
