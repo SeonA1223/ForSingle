@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssafy.happyhouse.model.dao.PostDao">
+	
+	<insert id="registPost">
+		insert into QnA (title, id, descrip)
+		values (#{title}, #{id}, #{descrip})
+	</insert>
+	
+	<select id="getPostList" resultType="PostDto">
+		select * from QnA
+	</select>
+	
+	<select id="getPost" resultType="PostDto">
+		select * from QnA where num=#{num}
+	</select>
+	
+	<select id="addViews" resultType="Integer">
+		update QnA
+		set views = #{views}
+		where num = #{num}
+	</select>
+	
+	<select id="getViews" resultType="int">
+		select views from QnA where num=#{num}
+	</select>
+	
+	<update id="updatePost">
+		update QnA 
+		set title = #{title}, id= #{id}, descrip=#{descrip} 
+		where num=#{num}
+	</update>
+	
+	<delete id="removePost">
+		delete from QnA where num=#{num}
+	</delete>
+
+
+
+</mapper>

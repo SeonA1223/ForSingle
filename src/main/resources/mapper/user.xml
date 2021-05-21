@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssafy.happyhouse.model.dao.UserDao">
+	
+	<insert id="registerUser">
+		insert into user (id, pwd, name, address, phoneNum)
+		values (#{id}, #{pwd}, #{name}, #{address}, #{phoneNum})
+	</insert>
+	
+	<select id="login" resultType="UserDto">
+		select id, name, address, phoneNum from user where id = #{id} and pwd = #{pwd}
+	</select>
+	
+	<select id="selectUser" resultType="UserDto">
+		select id, name, address, phoneNum from user where id=#{id}
+	</select>
+	
+	<update id="updateUser">
+		update user 
+		set name = #{name}, address= #{address}, phoneNum=#{phoneNum} 
+		where id=#{id}
+	</update>
+	
+	<delete id="removeUser">
+		delete from user where id=#{id}
+	</delete>
+
+
+
+</mapper>
