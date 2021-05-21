@@ -44,6 +44,11 @@ public class UserServiceImpl implements UserService{
 		return sqlSession.getMapper(UserDao.class).removeUser(id);
 	}
 	
-
+	@Override
+	public boolean checkManager(String id) {
+		int res = sqlSession.getMapper(UserDao.class).checkManager(id);
+		if(res == 1) return true;
+		else return false;
+	}
 
 }

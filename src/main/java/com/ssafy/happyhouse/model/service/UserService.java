@@ -11,5 +11,6 @@ public interface UserService {
 	UserDto selectUser(String id);
 	int updateUser(UserDto user);
 	int removeUser(String id);
+	boolean checkManager(String id);
 	
 }

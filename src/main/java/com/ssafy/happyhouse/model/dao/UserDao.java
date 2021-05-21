@@ -14,4 +14,5 @@ public interface UserDao {
 	UserDto selectUser(String id);
 	int updateUser(UserDto user);
 	int removeUser(String id);
+	int checkManager(String id);
 }

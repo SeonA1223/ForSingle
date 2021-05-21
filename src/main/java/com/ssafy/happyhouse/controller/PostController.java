@@ -2,6 +2,9 @@ package com.ssafy.happyhouse.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,9 +21,6 @@ import com.ssafy.happyhouse.model.dto.PostDto;
 import com.ssafy.happyhouse.model.service.PostService;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 @Api("Post 컨트롤러 API V1")
 @CrossOrigin("*")
