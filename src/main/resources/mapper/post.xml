@@ -15,11 +15,11 @@
 		select num, title, views, id, date_format(date, '%Y-%m-%d') as date, descrip, answernum from QnA where num=#{num}
 	</select>
 	
-	<select id="addViews" resultType="Integer">
+	<update id="addViews">
 		update QnA
 		set views = #{views}
 		where num = #{num}
-	</select>
+	</update>
 	
 	<select id="getViews" resultType="int">
 		select views from QnA where num=#{num}

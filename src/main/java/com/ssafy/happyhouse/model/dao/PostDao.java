@@ -12,7 +12,7 @@ public interface PostDao {
 	int registPost(PostDto post);
 	List<PostDto> getPostList();
 	PostDto getPost(int num);
-	Integer addViews(int num, int views);
+	int addViews(int num, int views);
 	int getViews(int num);
 	int updatePost(PostDto post);
 	int updateAnswernum(int num, int answernum);
