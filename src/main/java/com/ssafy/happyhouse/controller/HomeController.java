@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -31,12 +32,29 @@ public class HomeController {
 	
 	@GetMapping(value = "/user/signup")
 	public String mvSignup() {
-		return "signup";
+		return "user/signup";
 	}
 	
 	@GetMapping("/user/mypage")
 	public String mvMypage() {
-		return "mypage";
+		return "user/mypage";
+	}
+	
+	@GetMapping("/qna")
+	public String mvQnA() {
+		return "qna/list";
+	}
+	
+	@GetMapping("/qna/write")
+	public String mvQnAWrite() {
+		return "qna/write";
+	}
+	
+//	잠깐 만들예정
+	@GetMapping("/qna/detail")
+	public String mvQnAdetail(@RequestParam(value="num") String num, Model model) {
+		model.addAttribute("num", num);
+		return "qna/detail";
 	}
 	
 	@RequestMapping("/logout")

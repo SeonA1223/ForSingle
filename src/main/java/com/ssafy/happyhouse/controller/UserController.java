@@ -58,7 +58,7 @@ public class UserController {
 	}
 
 	@PostMapping("")
-	@ApiOperation(value = "로그인", notes = "isManager는 1이 true, 0이 false")
+	@ApiOperation(value = "로그인", notes = "isManager는 1이 true, 0이 false, sessionID = userinfo")
 	private boolean userLogin(@RequestBody Map<String, String> map, HttpSession session,HttpServletResponse response)
 			throws IOException, ServletException {
 
