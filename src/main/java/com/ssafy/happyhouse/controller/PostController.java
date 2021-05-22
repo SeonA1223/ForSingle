@@ -64,7 +64,7 @@ public class PostController {
 			modifyCookie = new Cookie("modify", "true");
 		else 
 			modifyCookie = new Cookie("modify", "false");
-		
+		modifyCookie.setPath("/"); // 쿠키를 유지할 시간 설정(단위 : 초) 
 		modifyCookie.setMaxAge(60*60*24*30);
 		response.addCookie(modifyCookie);
 		

@@ -11,6 +11,11 @@
 <head>
 <meta charset="UTF-8">
 <title>HappyHouse</title>
+<style type="text/css">
+a{
+	text-decoration : none;
+}
+</style>
 <script>
             $(document).ready(function(){
             	$("#login").click(function(){
@@ -110,7 +115,7 @@
 				</td>
 				<td class="header_td">
 					<div style="vertical-align: middle;">
-						<h3 class="text-center" style="color: white; float: left;">혼자사는 사람들을 위한</h3>
+						<h3 class="text-center" onclick="main" style="color: white; float: left;"><a href="/">혼자사는 사람들을 위한</a></h3>
 					</div>
 				</td>
 
