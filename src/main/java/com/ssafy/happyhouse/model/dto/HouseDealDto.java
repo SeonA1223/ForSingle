@@ -2,20 +2,35 @@ package com.ssafy.happyhouse.model.dto;
 
 public class HouseDealDto {
 	private int no;
-	private String dong;
-	private String AptName;
-	private String code;
-	private String dealAmount;
 	private String buildYear;
 	private String dealYear;
+	private String dong;
+	private String dealAmount;
+	private String AptName;
 	private String dealMonth;
+	private String rentMoney;
 	private String dealDay;
 	private String area;
-	private String floor;
 	private String jibun;
+	private String code;
+	private String floor;
 	private String type;
-	private String rentMoney;
+	private String lat;
+	private String lng;
+
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
 	
+	public String getLng() {
+		return lng;
+	}
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
 	public int getNo() {
 		return no;
 	}
