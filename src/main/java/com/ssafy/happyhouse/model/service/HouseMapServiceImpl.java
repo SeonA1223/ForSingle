@@ -30,9 +30,9 @@ public class HouseMapServiceImpl implements HouseMapService {
 		return houseMap.getDongInGugun(gugun);
 	}
 
-	@Override
-	public List<HouseInfoDto> getAptInDong(String dong) throws Exception {
-		return houseMap.getAptInDong(dong);
-	}
+//	@Override
+//	public List<HouseInfoDto> getAptInDong(String dong) throws Exception {
+//		return houseMap.getAptInDong(dong);
+//	}
 
 }

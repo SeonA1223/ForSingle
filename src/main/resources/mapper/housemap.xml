@@ -24,11 +24,5 @@
 		where code = #{gugun}
 		order by dong
 	</select>
-	
-	
-	<select id="getAptInDong" resultType="HouseInfoDto">
-		SELECT * FROM houseinfo WHERE dong = #{dong}
-		order by AptName
-	</select>
 
 </mapper>

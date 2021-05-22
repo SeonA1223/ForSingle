@@ -61,8 +61,8 @@ public class AnswerController {
 	@DeleteMapping("/{pnum}")
 	@ApiOperation(value = "답글 삭제", notes = "넘겨주는 값은 '답글'번호가 아니라 '원래 글' 번호!!!!!!!!!")
 	private int deleteAnswer(@PathVariable("pnum") int pnum) throws Exception {
-		int anum = postService.getPost(pnum).getAnswernum();
-		int res = answerService.removeAnswer(anum);
+		System.out.println(pnum);
+		int res = answerService.removeAnswer(pnum);
 		return res;
 	}
 }
