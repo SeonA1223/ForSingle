@@ -43,10 +43,10 @@ button.submit{
 
 $(document).ready(function(){
 	$("#has_answer").hide();
-	$("#no_answer").hide();
-	$("#write_answer").hide();
+ 	$("#no_answer").hide(); 
+ 	$("#write_answer").hide();
 	$("#update_qna").hide();
-	$("#confirm_ans_modifyButton").hide();
+	$("#confirm_ans_modifyButton").hide(); 
 	
 	getQnAData();
 	/* 기본적인 QnAData를 불러오기 */
@@ -252,6 +252,8 @@ $(document).ready(function(){
 	
 	<div class="container-sm pt-5">
 	<h2>QnA</h2>
+	
+	
 	<!-- QnA detail -->
 		<div class="container-sm" id="qna_board">
 			<table class="table">
@@ -271,6 +273,7 @@ $(document).ready(function(){
 			    </tr>
 			  </tbody>
 			</table>
+	 	</div>
 	 	</div>
 	 	
 	 	  	<!-- qna 수정 폼 -->
@@ -305,23 +308,23 @@ $(document).ready(function(){
 		
 	 	<!-- no answer -->
 	 	<div class="container-sm pt-3">
-	 	<c:if test="${useinfo.isManager eq 1}">
+ 	 	 <%-- <c:if test="${sessionScope.useinfo.isManager == 1}">   --%>
 		 <span  id="no_answer">
-			<button type="button" id="ans_writeButton" class="btn btn-info write_locate_button">답변 작성</button>
+			<button type="button" id="ans_writeButton" class="btn btn-detail btn-info write_locate_button">답변 작성</button>
 		</span>
-		</c:if>
+		<%-- </c:if>  --%>
 		<!-- QnA 수정 삭제 -->
-		<%-- <c:if test="${modify eq 'true'}"> --%>
+		
+		<c:if test="${cookie.modify.value eq 'true'}"> 
 			<button type="button" id="ans_modifyButton" class="btn btn-detail btn-success write_locate_button">수정</button>
 			<button type="button" id="confirm_ans_modifyButton" class="btn btn-detail btn-success">수정하기</button>
 		 	<button type="button" id="ans_del_writeButton" class="btn btn-detail btn-danger write_locate_button">삭제</button>
 		 	<button type="button" class="btn btn-light write_locate_button btn-detail movelist">목록 이동</button>
-		 	<%-- </c:if> --%>
+		 	</c:if>
 	  	</div>
 	 	
 	 	
-  	
-	 	<c:if test="${useinfo.isManager == 1 }">
+  
 		 	<!-- answer detail -->
 		 	<div id="has_answer">
 			 	<div class="container-sm pt-5 pb-3" >
@@ -340,21 +343,14 @@ $(document).ready(function(){
 				    </div>
 				</div>
 			</div>
-			</div>
-			</c:if>
-			
-		
-		<c:if test="${useinfo.isManager == 1 }">
-			<div>
+
 			<!-- 답변 수정 삭제  -->
 			 <button type="button" id="ModButton" class="btn btn-detail btn-success write_locate">수정</button>
 			 <button type="button" id="DelButton" class="btn btn-detail btn-danger write_locate">삭제</button>
 			 <button type="button" id="writeButton" class="btn btn-detail  btn-light write_locate movelist">목록 이동</button>
 	  	</div>
-	  	</c:if>
-	  	
+	  		
 	
-	  	<c:if test="${useinfo.isManager == 1 }">
 	  	<!-- answer write -->
 	  	<div id="write_answer">
 	  		<div class="container-sm pt-5 pb-3" >
@@ -372,7 +368,7 @@ $(document).ready(function(){
 				  </form>
 	  		</div>
 	  	</div>
-  	</c:if>
+
 
 	
 </body>
