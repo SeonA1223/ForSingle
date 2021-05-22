@@ -21,7 +21,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Api("Answer 컨트롤러 API V1")
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/answer")
 public class AnswerController {
