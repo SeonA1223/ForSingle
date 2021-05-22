@@ -33,11 +33,11 @@ public class HouseMapController {
 	@Autowired
 	HouseMapService houseMapService;
 	
-	@PostMapping(value = "/maps/search/{registerinfo}")
-	public ResponseEntity<List<HouseInfoDto>> search(@PathVariable("registerinfo") String registerinfo) throws Exception {
-		List<HouseInfoDto> list = houseMapService.getAptInDong(registerinfo);
-		return new ResponseEntity<List<HouseInfoDto>>(list, HttpStatus.OK);
-	}
+//	@PostMapping(value = "/maps/search/{dongcode}")
+//	public ResponseEntity<List<HouseInfoDto>> search(@PathVariable("dongcode") String dongcode) throws Exception {
+//		List<HouseInfoDto> list = houseMapService.getAptInDong(dongcode);
+//		return new ResponseEntity<List<HouseInfoDto>>(list, HttpStatus.OK);
+//	}
 	
 	@RequestMapping("/maps")
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

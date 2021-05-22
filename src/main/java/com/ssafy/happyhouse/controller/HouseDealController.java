@@ -42,16 +42,16 @@ public class HouseDealController {
 		return new ResponseEntity<List<FavoriteDto>>(list, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/deal/search/{aptName}")
-	public ResponseEntity<List<HouseDealDto>> aptNameSearch(@PathVariable("aptName") String aptName) throws Exception {
-		List<HouseDealDto> list = houseDealService.getAptInfoAtName(aptName);
-//		if(list != null && !list.isEmpty()) {
-//			return new ResponseEntity<List<HouseDealDto>>(list, HttpStatus.OK);
-//		}else {
-//			return new ResponseEntity(HttpStatus.NO_CONTENT);
-//		}
-		return new ResponseEntity<List<HouseDealDto>>(list, HttpStatus.OK);
-	}
+//	@PostMapping(value = "/deal/search/{aptName}")
+//	public ResponseEntity<List<HouseDealDto>> aptNameSearch(@PathVariable("aptName") String aptName) throws Exception {
+//		List<HouseDealDto> list = houseDealService.getAptInfoAtName(aptName);
+////		if(list != null && !list.isEmpty()) {
+////			return new ResponseEntity<List<HouseDealDto>>(list, HttpStatus.OK);
+////		}else {
+////			return new ResponseEntity(HttpStatus.NO_CONTENT);
+////		}
+//		return new ResponseEntity<List<HouseDealDto>>(list, HttpStatus.OK);
+//	}
 	
 	@GetMapping(value = "/deal/{dong}")
 	public ResponseEntity<List<HouseDealDto>> favoriteSearch(@PathVariable("dong") String dong) throws Exception {
