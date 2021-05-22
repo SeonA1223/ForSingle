@@ -1,10 +1,11 @@
-package com.ssafy.happyhouse.model.service;
+package com.ssafy.happyhouse.controller;
 
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,10 @@ public class ApiController {
 		}
 		br.close();
 		conn.disconnect();
+		
+		String xml = result + "";
+		
+		
 		
 		return result + "";
 	}
