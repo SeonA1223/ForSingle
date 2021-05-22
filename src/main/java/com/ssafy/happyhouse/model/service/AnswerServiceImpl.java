@@ -22,7 +22,8 @@ public class AnswerServiceImpl implements AnswerService {
 	@Transactional
 	public int registAnswer(AnswerDto answer, int postnum) {
 		sqlSession.getMapper(AnswerDao.class).registAnswer(answer);
-		return sqlSession.getMapper(PostDao.class).updateAnswernum(postnum, answer.getNum());
+		sqlSession.getMapper(PostDao.class).updateAnswernum(postnum, answer.getNum());
+		return answer.getNum();
 	}
 
 	@Override

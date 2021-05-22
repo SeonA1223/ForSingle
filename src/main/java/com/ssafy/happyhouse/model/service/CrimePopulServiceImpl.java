@@ -33,6 +33,9 @@ public class CrimePopulServiceImpl implements CrimePopulService {
 		
 		// gugun_code로 popul을 먼저 가져온다.
 		PopulDto popul = sqlSession.getMapper(PopulDao.class).getPopul(gugun_code);
+		
+		if(popul == null) return null;
+		
 		CrimeDto crime = sqlSession.getMapper(CrimeDao.class).getCrime(popul.getSiname());
 		
 		map.put("crime", Integer.toString(crime.getCrimecount()));
