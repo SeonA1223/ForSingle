@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <%-- <c:set var="answerNum" scope="{page}"/> --%>
 <!DOCTYPE html>
@@ -301,24 +301,17 @@ $(document).ready(function(){
 				
 		 	</div>
 	  	</div>
-	  	
-	  	
+		
+		
 	 	<!-- no answer -->
 	 	<div class="container-sm pt-3">
-	 	<c:if test="${useinfo.isManager == '1'}">
+	 	<c:if test="${useinfo.isManager eq 1}">
 		 <span  id="no_answer">
 			<button type="button" id="ans_writeButton" class="btn btn-info write_locate_button">답변 작성</button>
 		</span>
 		</c:if>
 		<!-- QnA 수정 삭제 -->
 		<%-- <c:if test="${modify eq 'true'}"> --%>
-			<div>
-				<p>	${userinfo.isManager }</p>
-				<p>	${userinfo.id }</p>
-				<p>	${userinfo.name }</p>
-				<p>	${userinfo.pwd }</p>
-				<p> ${modify }</p>
-			</div>
 			<button type="button" id="ans_modifyButton" class="btn btn-detail btn-success write_locate_button">수정</button>
 			<button type="button" id="confirm_ans_modifyButton" class="btn btn-detail btn-success">수정하기</button>
 		 	<button type="button" id="ans_del_writeButton" class="btn btn-detail btn-danger write_locate_button">삭제</button>

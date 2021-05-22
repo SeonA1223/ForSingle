@@ -108,6 +108,13 @@ public class UserDto {
 		this.isManager = isManager;
 	}
 
+	@Override
+	public String toString() {
+		return "UserDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", address=" + address + ", phoneNum="
+				+ phoneNum + ", isManager=" + isManager + "]";
+	}
+
+	
 
 	
 	
