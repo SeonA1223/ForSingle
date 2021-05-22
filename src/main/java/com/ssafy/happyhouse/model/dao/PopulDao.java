@@ -10,6 +10,6 @@ import com.ssafy.happyhouse.model.dto.PopulDto;
 public interface PopulDao {
 
 	List<PopulDto> getPopulList();
-	PopulDto getPopul(String siname);
+	PopulDto getPopul(String gugun_code);
 	
 }

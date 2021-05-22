@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,10 @@ import com.ssafy.happyhouse.model.dto.HouseInfoDto;
 import com.ssafy.happyhouse.model.dto.SidoGugunCodeDto;
 import com.ssafy.happyhouse.model.service.HouseMapService;
 
+import io.swagger.annotations.Api;
+
+@Api("HouseMap 컨트롤러 API V1")
+@CrossOrigin("*")
 @RestController
 public class HouseMapController {
 	
