@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.ibatis.type.TypeReference;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.http.HttpStatus;
@@ -29,7 +31,7 @@ import io.swagger.annotations.Api;
 public class ApiController {
 
 	@PostMapping(value = "/maps/search/{dongcode}")
-	public List<HouseDealDto> search(@PathVariable("dongcode") String dongcode) throws Exception {
+	public String search(@PathVariable("dongcode") String dongcode) throws Exception {
 		
 		StringBuffer result = new StringBuffer();
 		String URL_api = "http://openapi.molit.go.kr:8081/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcRHRent?LAWD_CD=" + dongcode.substring(0, 5) + "&DEAL_YMD=201512&serviceKey=lqH%2Fp4Ru%2ByXvcac0j5JIwWnHxhe1jq18yzY3vJ6eXuwzvI3V0%2BBQ%2FO57L%2BIYDAKCqiBkcPrwgsoO%2BFoDfRwvZg%3D%3D";
@@ -55,16 +57,24 @@ public class ApiController {
 		String xml = result + "";
 		
 		JSONObject jObject = XML.toJSONObject(xml);
+		JSONObject response = jObject.getJSONObject("response");
+		JSONObject body = response.getJSONObject("body");
+		JSONObject items = body.getJSONObject("items");
+		JSONArray item = items.getJSONArray("item");
+		
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
-		Object json = mapper.readValue(jObject.toString(), Object.class);
+		Object json = mapper.readValue(item.toString(), Object.class);
 		String output = mapper.writeValueAsString(json);
 		
+//		ObjectMapper mapper = new ObjectMapper();
+//		mapper.enable(SerializationFeature.INDENT_OUTPUT);
+//		Object json = mapper.readValue(jObject.toString(), Object.class);
+//		String output = mapper.writeValueAsString(json);
+		
 		List<HouseDealDto> list = new ArrayList<HouseDealDto>();
-		
-		
-		
-		return list;
+
+		return output;
 	}
 	
 }
