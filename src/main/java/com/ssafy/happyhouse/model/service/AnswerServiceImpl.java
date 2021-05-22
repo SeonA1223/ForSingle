@@ -45,6 +45,7 @@ public class AnswerServiceImpl implements AnswerService {
 	@Transactional
 	public int removeAnswer(int pnum) {
 		int num = sqlSession.getMapper(PostDao.class).getPost(pnum).getAnswernum();
+		System.out.println(num);
 		sqlSession.getMapper(PostDao.class).removeAnswernum(pnum);
 		return sqlSession.getMapper(AnswerDao.class).removeAnswer(num);
 		
