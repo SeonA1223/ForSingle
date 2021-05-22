@@ -2,6 +2,11 @@ package com.ssafy.happyhouse.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.dto.PostDto;
+import com.ssafy.happyhouse.model.dto.UserDto;
 import com.ssafy.happyhouse.model.service.AnswerService;
 import com.ssafy.happyhouse.model.service.PostService;
 
@@ -47,9 +53,21 @@ public class PostController {
 	
 	@GetMapping("/{num}")
 	@ApiOperation(value = "QnA 1개 받기", notes = "PathVariable로 num 받음.")
-	private PostDto getPost(@PathVariable("num") int num) throws Exception {
+	private PostDto getPost(@PathVariable("num") int num, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		updateViews(num);
 		PostDto res = postService.getPost(num);
+		HttpSession session = request.getSession();
+		UserDto user = (UserDto)session.getAttribute("userinfo");
+		
+		Cookie modifyCookie;
+		if(res.getId().equals(user.getId())) 
+			modifyCookie = new Cookie("modify", "true");
+		else 
+			modifyCookie = new Cookie("modify", "false");
+		
+		modifyCookie.setMaxAge(60*60*24*30);
+		response.addCookie(modifyCookie);
+		
 		return res;
 	}
 	
