@@ -257,15 +257,15 @@ $(document).ready(function(){
 </script>
 <script>
   function showKakaoMap(data, lat, lng){
+	  let moveLoc = new kakao.maps.LatLng(lat, lng);
 	  container.style.display = 'block';
 	  setTimeout(function(){
 		  console.log("works?");
 		  map.relayout(); 
-	  }, 3000);
+	  }, 2000);
 	  
 	  let positions= [];
-	  let bounds = new kakao.maps.LatLngBounds();    
-
+	  
 		data.forEach(function(element){
 			let obj = {
 					title : element.aptName,
@@ -285,10 +285,10 @@ $(document).ready(function(){
 		        position: positions[i].latlng, // 마커를 표시할 위치
 		        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 			})
-		/* 	bounds.extend(positions.latlng); */
+			
 		}
-		/* addMarker(data); */
-		/* map.setBounds(bounds); */
+		
+		map.panTo(moveLoc);
 	}
   
 
