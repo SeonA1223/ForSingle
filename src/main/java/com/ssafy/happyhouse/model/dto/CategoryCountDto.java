@@ -6,6 +6,20 @@ public class CategoryCountDto {
 	int subway;
 	int mart;
 	int convenience;
+	int chicken;
+	int coinLaundry;
+	public int getCoinLaundry() {
+		return coinLaundry;
+	}
+	public void setCoinLaundry(int coinLaundry) {
+		this.coinLaundry = coinLaundry;
+	}
+	public int getChicken() {
+		return chicken;
+	}
+	public void setChicken(int chicken) {
+		this.chicken = chicken;
+	}
 	public int getPharmacy() {
 		return pharmacy;
 	}
@@ -36,14 +50,7 @@ public class CategoryCountDto {
 	public void setConvenience(int convenience) {
 		this.convenience = convenience;
 	}
-	public CategoryCountDto(int pharmacy, int bank, int subway, int mart, int convenience) {
-		super();
-		this.pharmacy = pharmacy;
-		this.bank = bank;
-		this.subway = subway;
-		this.mart = mart;
-		this.convenience = convenience;
-	}
+
 	public CategoryCountDto() {
 		super();
 	}

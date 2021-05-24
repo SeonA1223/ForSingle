@@ -50,14 +50,20 @@ public class ApiController {
 	public CategoryCountDto countCategory(@PathVariable("lat") String lat, @PathVariable("lng") String lng) throws Exception {
 		
 		CategoryCountDto dto = new CategoryCountDto();
-		int dto_size = 5;
-		int[] count = new int[dto_size];
-		String[] category_code = new String[dto_size];
+		int category_size = 5;
+		int[] category_count = new int[category_size];
+		String[] category_code = new String[category_size];
 		category_code[0] = "PM9";
 		category_code[1] = "BK9";
 		category_code[2] = "SW8";
 		category_code[3] = "MT1";
 		category_code[4] = "CS2";
+		
+		int keyword_size = 2;
+		int[] keyword_count = new int[keyword_size];
+		String[] keyword_code = new String[keyword_size];
+		keyword_code[0] = "치킨";
+		keyword_code[1] = "셀프빨래방";
 		
 		// 걸어서 10분거리로 800m
 		String radius = "800";
@@ -70,7 +76,9 @@ public class ApiController {
 		lat = URLEncoder.encode(lat, "UTF-8");
 		lng = URLEncoder.encode(lng, "UTF-8");
 		
-		for(int i = 0; i < dto_size; i++) {
+		// 주변의 약국, 은행, 지하철역, 대형마트, 편의점의 갯수를 세기 위해 카테고리 기반 검색.
+		
+		for(int i = 0; i < category_size; i++) {
 			StringBuffer result2 = new StringBuffer();
 			String URL_api2 = "https://dapi.kakao.com/v2/local/search/category.json?category_group_code="+ category_code[i] +"&y=" + lng + "&x=" + lat + "&radius=" + radius;				
 			URL url2 = new URL(URL_api2);
@@ -103,14 +111,57 @@ public class ApiController {
 			org.json.simple.JSONArray documents = (org.json.simple.JSONArray) kakaoObject.get("documents");
 			// 추정 : 한번에 들어오는 값의 최대가 15개씩인 듯.
 			// 항상 15개에서 멈춤. 그렇다고 값이 바뀌지 않는 것은 또 아님.
-			count[i] = documents.size();
+			category_count[i] = documents.size();
 		}
 		
-		dto.setPharmacy(count[0]);
-		dto.setBank(count[1]);
-		dto.setSubway(count[2]);
-		dto.setMart(count[3]);
-		dto.setConvenience(count[4]);
+		dto.setPharmacy(category_count[0]);
+		dto.setBank(category_count[1]);
+		dto.setSubway(category_count[2]);
+		dto.setMart(category_count[3]);
+		dto.setConvenience(category_count[4]);
+		
+		// 주변의 치킨집을 세기 위해 keyword 기반 검색
+		
+		for(int i = 0; i < keyword_size; i++) {
+			StringBuffer result2 = new StringBuffer();
+			keyword_code[i] = URLEncoder.encode(keyword_code[i], "UTF-8");
+			String URL_api2 = "https://dapi.kakao.com/v2/local/search/keyword.json?query="+ keyword_code[i] +"&y=" + lng + "&x=" + lat + "&radius=" + radius;				
+			URL url2 = new URL(URL_api2);
+			
+			HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
+			conn2.setRequestMethod("GET");
+//			conn2.setRequestProperty("User-Agent", "Java-Client");
+			conn2.setRequestProperty("X-Requested-With", "curl");
+			conn2.setRequestProperty("Authorization", auth);
+			BufferedReader br2;
+			if(conn2.getResponseCode() >= 200 && conn2.getResponseCode() <= 300) {
+				br2 = new BufferedReader(new InputStreamReader(conn2.getInputStream(), "UTF-8"));
+			}else {
+				br2 = new BufferedReader(new InputStreamReader(conn2.getErrorStream()));
+			}
+			
+			String line2;
+			
+			while((line2 = br2.readLine()) != null) {
+				result2.append(line2 + "\n");
+			}
+			br2.close();
+			conn2.disconnect();
+			
+			String rjson = result2.toString();
+			
+//			System.out.println(rjson);
+			
+			JSONParser parser = new JSONParser();
+			Object obj = parser.parse(rjson);
+			org.json.simple.JSONObject kakaoObject = (org.json.simple.JSONObject) obj;
+			org.json.simple.JSONArray documents = (org.json.simple.JSONArray) kakaoObject.get("documents");
+			// 추정 : 한번에 들어오는 값의 최대가 15개씩인 듯.
+			// 항상 15개에서 멈춤. 그렇다고 값이 바뀌지 않는 것은 또 아님.
+			keyword_count[i] = documents.size();
+		}
+		dto.setChicken(keyword_count[0]);
+		dto.setCoinLaundry(keyword_count[1]);
 		
 		return dto;
 	}
