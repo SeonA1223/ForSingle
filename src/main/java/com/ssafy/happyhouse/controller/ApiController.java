@@ -105,7 +105,7 @@ public class ApiController {
 		if(addDto != null)
 			curDong = addDto.getDong();
 		
-		if (item != null) {
+		if (item != null && curDong != null) {
 			int jsonSize = item.length();
 			for (int i = 0; i < jsonSize; i++) {
 				JSONObject cur = item.getJSONObject(i);
@@ -159,6 +159,8 @@ public class ApiController {
 				if (cur.has("전용면적")) {
 					if (cur.get("전용면적") instanceof Double)
 						dto.setArea(Double.toString(cur.getDouble("전용면적")));
+					else if(cur.get("전용면적") instanceof Integer)
+						dto.setArea(Integer.toString(cur.getInt("전용면적")));
 					else
 						dto.setArea(cur.getString("전용면적"));
 				}

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.happyhouse.model.dto.DongCodeDto;
 import com.ssafy.happyhouse.model.dto.HouseInfoDto;
 import com.ssafy.happyhouse.model.dto.SidoGugunCodeDto;
 import com.ssafy.happyhouse.model.service.HouseMapService;
@@ -93,13 +94,15 @@ public class HouseMapController {
 		else if("dong".equals(act)) {
 			String gugun = request.getParameter("gugun");
 			PrintWriter out = response.getWriter();
-			List<HouseInfoDto> list = null;
+			List<DongCodeDto> list = null;
 			JSONArray arr = new JSONArray();
 			try {
 				list = houseMapService.getDongInGugun(gugun);
-				for(HouseInfoDto dto : list) {
+				for(DongCodeDto dto : list) {
 					JSONObject obj = new JSONObject();
-					obj.put("code", dto.getCode());
+					obj.put("dongcode", dto.getDongcode());
+					obj.put("city", dto.getCity());
+					obj.put("gugun", dto.getGugun());
 					obj.put("dong", dto.getDong());
 					arr.add(obj);
 				}
