@@ -31,6 +31,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.ssafy.happyhouse.model.dto.AddressDto;
+import com.ssafy.happyhouse.model.dto.CategoryCountDto;
 import com.ssafy.happyhouse.model.dto.HouseDealDto;
 import com.ssafy.happyhouse.model.dto.HouseInfoDto;
 import com.ssafy.happyhouse.model.service.HouseDealService;
@@ -45,6 +46,75 @@ public class ApiController {
 	@Autowired
 	HouseDealService houseDealService;
 
+	@GetMapping(value = "/detail_info/{lat}/{lng}")
+	public CategoryCountDto countCategory(@PathVariable("lat") String lat, @PathVariable("lng") String lng) throws Exception {
+		
+		CategoryCountDto dto = new CategoryCountDto();
+		int dto_size = 5;
+		int[] count = new int[dto_size];
+		String[] category_code = new String[dto_size];
+		category_code[0] = "PM9";
+		category_code[1] = "BK9";
+		category_code[2] = "SW8";
+		category_code[3] = "MT1";
+		category_code[4] = "CS2";
+		
+		// 걸어서 10분거리로 800m
+		String radius = "800";
+		radius = URLEncoder.encode(radius, "UTF-8");
+		
+		// 이게 2차 문제 | 오타였음! (401 : KaKaoAK => KakaoAk)
+		String auth = "KakaoAK " + "267c0734c220f67b6e00a6daadfffdfd";
+		
+		// 이게 1차 문제였음. (400 에러)
+		lat = URLEncoder.encode(lat, "UTF-8");
+		lng = URLEncoder.encode(lng, "UTF-8");
+		
+		for(int i = 0; i < dto_size; i++) {
+			StringBuffer result2 = new StringBuffer();
+			String URL_api2 = "https://dapi.kakao.com/v2/local/search/category.json?category_group_code="+ category_code[i] +"&y=" + lng + "&x=" + lat + "&radius=" + radius;				
+			URL url2 = new URL(URL_api2);
+			
+			HttpURLConnection conn2 = (HttpURLConnection) url2.openConnection();
+			conn2.setRequestMethod("GET");
+//			conn2.setRequestProperty("User-Agent", "Java-Client");
+			conn2.setRequestProperty("X-Requested-With", "curl");
+			conn2.setRequestProperty("Authorization", auth);
+			BufferedReader br2;
+			if(conn2.getResponseCode() >= 200 && conn2.getResponseCode() <= 300) {
+				br2 = new BufferedReader(new InputStreamReader(conn2.getInputStream(), "UTF-8"));
+			}else {
+				br2 = new BufferedReader(new InputStreamReader(conn2.getErrorStream()));
+			}
+			
+			String line2;
+			
+			while((line2 = br2.readLine()) != null) {
+				result2.append(line2 + "\n");
+			}
+			br2.close();
+			conn2.disconnect();
+			
+			String rjson = result2.toString();
+			
+			JSONParser parser = new JSONParser();
+			Object obj = parser.parse(rjson);
+			org.json.simple.JSONObject kakaoObject = (org.json.simple.JSONObject) obj;
+			org.json.simple.JSONArray documents = (org.json.simple.JSONArray) kakaoObject.get("documents");
+			// 추정 : 한번에 들어오는 값의 최대가 15개씩인 듯.
+			// 항상 15개에서 멈춤. 그렇다고 값이 바뀌지 않는 것은 또 아님.
+			count[i] = documents.size();
+		}
+		
+		dto.setPharmacy(count[0]);
+		dto.setBank(count[1]);
+		dto.setSubway(count[2]);
+		dto.setMart(count[3]);
+		dto.setConvenience(count[4]);
+		
+		return dto;
+	}
+	
 	@GetMapping(value = "/maps/search/{dongcode}")
 	public List<HouseDealDto> search(@PathVariable("dongcode") String dongcode) throws Exception {
 
