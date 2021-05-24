@@ -112,7 +112,7 @@ img.bookmark {
 		<div class="row">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-3">
-				<div id="map" style="width: 500px; height: 500px;"></div>
+				<div id="map" style="width: 100%; height: 500px;"></div>
 			</div>
 		</div>
 		<div style="height: 15%;"></div>
@@ -135,6 +135,7 @@ img.bookmark {
 					</tbody>
 				</table>
 			</div>
+		</div>
 		</div>
 </body>
 <script
@@ -257,19 +258,19 @@ $(document).ready(function(){
 </script>
 <script>
   function showKakaoMap(data, lat, lng){
-	  let moveLoc = new kakao.maps.LatLng(lat, lng);
+	  let moveLoc = new kakao.maps.LatLng(lng, lat);
 	  container.style.display = 'block';
-	  setTimeout(function(){
+ 	  setTimeout(function(){
 		  console.log("works?");
 		  map.relayout(); 
-	  }, 2000);
-	  
+	  }, 1000);
+	
 	  let positions= [];
 	  
 		data.forEach(function(element){
 			let obj = {
 					title : element.aptName,
-					latlng : new kakao.maps.LatLng(element.lat, element.lng)
+					latlng : new kakao.maps.LatLng(element.lng, element.lat)
 			}
 			positions.push(obj);
 			/* let marker = new kakao.maps.Marker({
@@ -293,7 +294,7 @@ $(document).ready(function(){
   
 
 	   var container = document.getElementById('map');
-	  	container.style.display = 'none';
+	  	 container.style.display = 'none';
 		var options = {
 			center: new kakao.maps.LatLng(33.450701, 126.570667),
 			level: 6
