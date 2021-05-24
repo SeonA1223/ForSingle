@@ -346,6 +346,7 @@ public class ApiController {
 				org.json.simple.JSONArray documents = (org.json.simple.JSONArray) kakaoObject.get("documents");
 				org.json.simple.JSONObject kakaoAddress = (org.json.simple.JSONObject) documents.get(0);
 				
+				// 이거 반대로 주고 있음. 우선 받는 프론트에서 반대로 적도록 해놨음.
 				dto.setLat((String)kakaoAddress.get("x"));
 				dto.setLng((String)kakaoAddress.get("y"));
 
