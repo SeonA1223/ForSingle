@@ -9,14 +9,8 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <title>header</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-<script src='main.js'></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <style>
 html, body {
 	width: 100%;
@@ -30,10 +24,6 @@ html, body {
 .header_td {
 	width: 100%;
 	table-layout: fixed;
-}
-
-#main {
-	margin-top: 50px;
 }
 
 a {

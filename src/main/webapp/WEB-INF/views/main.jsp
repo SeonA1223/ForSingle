@@ -4,8 +4,9 @@
 <%@page import="com.ssafy.happyhouse.model.dto.HouseInfoDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <head>
 <meta charset='utf-8'>
@@ -15,7 +16,6 @@
 html, body {
 	width: 100%;
 	height: 100%;
-	background: url('img/main.jpg');
 }
 
 .header {
@@ -27,40 +27,121 @@ html, body {
 	table-layout: fixed;
 }
 
-#container{
+#container {
 	padding-left: 0px;
 	padding-right: 0px;
+	background: url('img/main.jpg');
 }
+
 .image-thumbnail {
-	 width:100%;
-    height:100%;
-    object-fit:cover;
-}
-img.bookmark{
-	max-width: 30%; 
-	height: auto;
-	 position:absolute;
-    top:50%; left:50%;
-    transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
+img.bookmark {
+	max-width: 30%;
+	height: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 </style>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=93658c6b7f4593d6432bd13294164f05&libraries=services,clusterer,drawing"></script>
-<script>
-	window.onload = function(){
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
 
-		var map = new kakao.maps.Map(container, options);
-	}
-	</script>
-	
+
+
+
+</head>
+<body>
+	<c:import url="./include/header.jsp"></c:import>
+	<div class="container-fluid" id="container">
+		<div style="height: 200px;"></div>
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-2">
+				<form class="form">
+					<select name="sido" id="sido" class="custom-select">
+
+					</select>
+				</form>
+
+			</div>
+			<div class="col-sm-2">
+				<form class="form">
+					<select name="gugun" id="gugun" class="custom-select">
+						<option value="0">선택</option>
+					</select>
+				</form>
+			</div>
+			<div class="col-sm-2">
+				<form class="form">
+					<select name="dong" id="dong" class="custom-select">
+						<option value="0">선택</option>
+					</select>
+				</form>
+			</div>
+			<div class="col-sm-2">
+				<button type="button" id="dongCode_search" class="btn btn-dark">검색</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-8"></div>
+			<div class="col-sm-4">
+				<label class="form-check-label" for="bookmark"> <input
+					type="checkbox" class="form-check-input" id="bookmark"
+					name="bookmark" value="something" checked>즐겨찾기 추가
+				</label>
+			</div>
+		</div>
+		<!-- 			<div style="height: 5%;"></div> -->
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-1" id="boomark_img_div">
+				<img class="bookmark" src="${root}/img/bookmark.png">
+			</div>
+			<div class="col-sm-6">
+				<button type="button" class="btn btn-info btn-sm">button</button>
+				<button type="button" class="btn btn-info btn-sm">button</button>
+				<button type="button" class="btn btn-info btn-sm">button</button>
+			</div>
+
+		</div>
+		<div style="height: 50px;"></div>
+
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-3">
+				<div id="map" style="width: 500px; height: 500px;"></div>
+			</div>
+		</div>
+		<div style="height: 15%;"></div>
+	</div>
+	<div style="background-color: #6F4E37;" class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<table class="table table-hover" id="table_list">
+					<thead>
+						<tr>
+							<th>인덱스</th>
+							<th>이름</th>
+							<th>가격</th>
+							<th>층 수</th>
+							<th>면적</th>
+						</tr>
+					</thead>
+					<tbody id="aptlist_table_data">
+					</tbody>
+				</table>
+			</div>
+		</div>
+</body>
+<script
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=93658c6b7f4593d6432bd13294164f05&libraries=services"></script>
 <script>
 $(document).ready(function(){
-						$.get("${pageContext.request.contextPath}/maps"
+				$.get("${pageContext.request.contextPath}/maps"
 							,{act:"sido"}
 							,function(data, status){
 								$("#sido").empty();
@@ -91,11 +172,10 @@ $(document).ready(function(){
 							$.get("${pageContext.request.contextPath}/maps"
 									,{act:"dong", gugun:$("#gugun").val()}
 									,function(data, status){
-										console.log(data);
 										$("#dong").empty();
 										$("#dong").append('<option value="0">선택</option>');
 										$.each(data, function(index, vo) {
-											$("#dong").append("<option value='"+vo.dong+"'>"+vo.dong+"</option>");
+											$("#dong").append("<option value='"+vo.dongcode+"'>"+vo.dong+"</option>");
 										});//each
 									}//function
 									, "json"
@@ -103,66 +183,122 @@ $(document).ready(function(){
 						});//change
 					});//ready
 </script>
+<script>
 
-</head>
-<body>
-	<c:import url="./include/header.jsp" ></c:import>
-		<div class="container" id="container">
-			<div style="height: 200px;"></div>
-	 		<div class="row">	
-	 			<div class="col-sm-3">
-	 			<form class="form">
-						  <select name="sido" id="sido" class="custom-select">
-						   
-						  </select>
-						</form>
+/* function addMarker(data){
+	console.log(map);
+	
+} */
 
-					</div>
-					<div class="col-sm-3">
-						<form class="form">
-							  <select name="gugun" id="gugun"class="custom-select">
-							   	<option value="0">선택</option>
-							  </select>
-						</form>
-					</div>
-					<div class="col-sm-3">
-						<form class="form">
-						  <select name="dong" id="dong"  class="custom-select">
-						  	<option value="0">선택</option>
-						  </select>
-						  </form>
-					</div>	
-					<div class="col-sm-3">
-						<button type="button" class="btn btn-dark">검색</button>
-					</div>	
-			</div>
-			<div class="row">
-				<div class="col-sm-7"></div>
-				<div class="col-sm-4">
-					 <label class="form-check-label" for="bookmark">
-				        <input type="checkbox" class="form-check-input" id="bookmark" name="bookmark" value="something" checked>즐겨찾기 추가
-				     </label>
-				</div>
-			</div>
-<!-- 			<div style="height: 5%;"></div> -->
-			<div class="row">
-				<div class="col-sm-1">
+$(document).ready(function(){
+	$("#table_list").hide();
+	$("#dongCode_search").click(function(){
+		let dongcode = $("#dong").val();
+		console.log(dongcode);
+		$.ajax({
+			url :'/maps/search/' + dongcode,
+			type: 'GET',
+			dataType:'json',
+			success: function(data){
+				$("#table_list").show();
+				$("#aptlist_table_data").empty();
+				let avg_lat = 0;
+				let avg_lng = 0;
+				let cnt = data.length;
+			    $(data).each(function(index, data){
+			    	let price;
+			    	if(data.rentMoney == 0){
+			    		price = '전세 ' + data.dealAmount;
+			    	}else{
+			    		price = '월세 ' + data.dealAmount + "/" + data.rentMoney;	
+			    	}
+			    	console.log(typeof data.lat);
+			    	avg_lat += parseFloat(data.lat);
+			    	avg_lng += parseFloat(data.lng);
+			    	let str = ` <tr>
+			            <td>${'${index+1}'}</td>
+			            <td>${'${data.aptName}'}</td>
+			            <td>${'${price}'}</td>
+			            <td>${'${data.floor}'}</td>
+			            <td>${'${data.area'}}m^2</td>
+			          </tr>
+			    	`
+			    	$("#aptlist_table_data").append(str);
+			    })
+			    
+			    
+			   showKakaoMap(data, avg_lat/cnt, avg_lng/cnt); 
+/* 			    let lat = avg_lat/cnt;
+			    let lng = avg_lng/cnt;
+
+			   
+					var container = document.getElementById('map');
+					var options = {
+						center: new kakao.maps.LatLng(lat, lng),
+						level: 2
+					};
+
+					var map = new kakao.maps.Map(container, options); */
 					
-				</div>
-				<div class="col-sm-1" id="boomark_img_div">
-					<img class="bookmark" src="${root}/img/bookmark.png">
-				</div>
-				<div class="col-sm-6">
-					<button type="button" class="btn btn-info btn-sm">button</button>
-					<button type="button" class="btn btn-info btn-sm">button</button>
-					<button type="button" class="btn btn-info btn-sm">button</button>
-				</div>
+					/* data.forEach(function(element){
+						console.log(element);
+						let marker = new kakao.maps.Marker({
+							position : new kakao.maps.LatLng(element.lat, element.lng)
+						})
+						marker.setMap(map);
+					})
+					/* addMarker(data); */
+				 } 
 
-			</div>
-			<div style="height: 100px;"></div>
-		</div>
-		<div class="container">
-			<div id="map" style="width:500px;height:400px;"></div>
+			
+		});
+	})
+});
+</script>
+<script>
+  function showKakaoMap(data, lat, lng){
+	  container.style.display = 'block';
+	  setTimeout(function(){
+		  console.log("works?");
+		  map.relayout(); 
+	  }, 3000);
+	  
+	  let positions= [];
+	  let bounds = new kakao.maps.LatLngBounds();    
+
+		data.forEach(function(element){
+			let obj = {
+					title : element.aptName,
+					latlng : new kakao.maps.LatLng(element.lat, element.lng)
+			}
+			positions.push(obj);
+			/* let marker = new kakao.maps.Marker({
+				position : new kakao.maps.LatLng(element.lat, element.lng)
+			});
+			marker.setMap(map); */
+		})
+		console.log(positions);
+		for(let i=0; i< positions.length; i++)
+		{
+			let marker = new kakao.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position: positions[i].latlng, // 마커를 표시할 위치
+		        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			})
+		/* 	bounds.extend(positions.latlng); */
+		}
+		/* addMarker(data); */
+		/* map.setBounds(bounds); */
+	}
+  
+
+	   var container = document.getElementById('map');
+	  	container.style.display = 'none';
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 6
+		};
 		
-		</div>
-</body>
+	  var map = new kakao.maps.Map(container, options);
+	
+</script>
