@@ -47,11 +47,24 @@ $(document).ready(function(){
  	$("#write_answer").hide();
 	$("#update_qna").hide();
 	$("#confirm_ans_modifyButton").hide(); 
-	
-	getQnAData();
+	var cnt = 0;
+	if(cnt == 0){
+		getQnAData();
+		cnt++;
+	}else{
+		history.go(0);
+	}
+/*     if (self.name != 'reload') {
+        self.name = 'reload';
+        self.location.reload(true);
+    }
+    else self.name = '';  */
+	/* window.location.reload(); */
 	/* 기본적인 QnAData를 불러오기 */
 	function getQnAData(){
 		let num = '${num}';
+		let writer = '${writer}';
+		console.log(writer);
 		console.log(num);
 		$.ajax({
 			url : '/post/' + num,
@@ -93,6 +106,7 @@ $(document).ready(function(){
 						$("#answer_detail_title").attr('answernum', data);
 						$("#answer_detail_contents").text(answer.descrip);
 						$("#has_answer").show();
+						
 					}
 			})
 		
@@ -306,21 +320,22 @@ $(document).ready(function(){
 	  	</div>
 		
 		
+	 	<%-- ${userinfo.isManager} --%>
 	 	<!-- no answer -->
 	 	<div class="container-sm pt-3">
- 	 	 <%-- <c:if test="${sessionScope.useinfo.isManager == 1}">   --%>
+ 	 	 <c:if test="${userinfo.isManager eq 1}">   
 		 <span  id="no_answer">
 			<button type="button" id="ans_writeButton" class="btn btn-detail btn-info write_locate_button">답변 작성</button>
 		</span>
-		<%-- </c:if>  --%>
+		</c:if> 
 		<!-- QnA 수정 삭제 -->
 		
-		<c:if test="${cookie.modify.value eq 'true'}"> 
+		<c:if test="${sessionScope.userinfo.id eq writer}"> 
 			<button type="button" id="ans_modifyButton" class="btn btn-detail btn-success write_locate_button">수정</button>
 			<button type="button" id="confirm_ans_modifyButton" class="btn btn-detail btn-success">수정하기</button>
 		 	<button type="button" id="ans_del_writeButton" class="btn btn-detail btn-danger write_locate_button">삭제</button>
-		 	<button type="button" class="btn btn-light write_locate_button btn-detail movelist">목록 이동</button>
 		 	</c:if>
+		 	<button type="button" class="btn btn-light write_locate_button btn-detail movelist">목록 이동</button>
 	  	</div>
 	 	
 	 	
@@ -344,10 +359,12 @@ $(document).ready(function(){
 				</div>
 			</div>
 
+		 <c:if test="${sessionScope.useinfo.isManager == 1}">   
 			<!-- 답변 수정 삭제  -->
 			 <button type="button" id="ModButton" class="btn btn-detail btn-success write_locate">수정</button>
 			 <button type="button" id="DelButton" class="btn btn-detail btn-danger write_locate">삭제</button>
 			 <button type="button" id="writeButton" class="btn btn-detail  btn-light write_locate movelist">목록 이동</button>
+		</c:if>
 	  	</div>
 	  		
 	

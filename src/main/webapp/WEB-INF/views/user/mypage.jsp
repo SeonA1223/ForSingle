@@ -55,7 +55,7 @@ $(function(){
 			success: function(user){
 				console.log(user.id);
 				$("#table").empty();
-				let list = 
+/* 				let list = 
 					`
 					<tr>
 					<th>ID</th>
@@ -73,7 +73,11 @@ $(function(){
 					<th>전화번호</th>
 					<td><input type="tel" id = "phoneNum" name="phoneNum" value = "${'${user.phoneNum }'}"></td>
 				</tr>
-				`;
+				`; */
+				
+				
+				
+				
 				$("#table").append(list);
 			}
 		})
@@ -122,7 +126,7 @@ $(function(){
 
 </head>
 <body>
-	<c:import url="header.jsp"></c:import>
+	<c:import url="../include/header.jsp"></c:import>
 
 	<div align="center" id="main">
 		<table id="table">
@@ -131,6 +135,7 @@ $(function(){
 		<button id="modify">수정</button>
 		<button id="delete">탈퇴</button>
 		<a href="/">돌아가기</a>
+		
 	</div>
 
 </body>

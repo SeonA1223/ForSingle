@@ -52,8 +52,10 @@ public class HomeController {
 	
 //	잠깐 만들예정
 	@GetMapping("/qna/detail")
-	public String mvQnAdetail(@RequestParam(value="num") String num, Model model) {
+	public String mvQnAdetail(@RequestParam(value="num") String num, @RequestParam(value="writer") String writer, Model model) {
 		model.addAttribute("num", num);
+		model.addAttribute("writer", writer);
+		System.out.println(writer);
 		return "qna/detail";
 	}
 	

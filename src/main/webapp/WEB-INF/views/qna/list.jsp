@@ -49,10 +49,10 @@ $(document).ready(function(){
 						status = '답변완료';
 					}
 					console.log(status);
-					 let str = `<tr class="qna_list" id="${'${data.num}'}" >
+					 let str = `<tr class="qna_list" id="${'${data.num}'}" writer="${'${data.id}'}">
 				        <td>${'${status}'}</td>
 				        <td>${'${data.title}'}</td>
-				        <td>${'${data.id}'}</td>
+				        <td >${'${data.id}'}</td>
 				        <td>${'${data.views}'}</td>
 				        <td>${'${data.date}'}</td>
 				      </tr>
@@ -68,7 +68,9 @@ $(document).ready(function(){
 	$(document).on("click", ".qna_list", function(){
 		console.log("click?");
 		let num = $(this).attr('id');
-		location.href = "/qna/detail?num=" + num;
+		let writer = $(this).attr('writer');
+		console.log(writer);
+		location.href = "/qna/detail?num=" + num + "&writer=" + writer;
 		
 	})
 	$("#writeButton").click(function(){

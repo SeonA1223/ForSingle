@@ -57,18 +57,18 @@ public class PostController {
 	private PostDto getPost(@PathVariable("num") int num, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		updateViews(num);
 		PostDto res = postService.getPost(num);
-		HttpSession session = request.getSession();
-		UserDto user = (UserDto)session.getAttribute("userinfo");
-		
-		Cookie modifyCookie;
-		if(res.getId().equals(user.getId())) 
-			modifyCookie = new Cookie("modify", "true");
-		else 
-			modifyCookie = new Cookie("modify", "false");
-		modifyCookie.setPath("/qna/"); // 쿠키를 유지할 시간 설정(단위 : 초) 
-		modifyCookie.setMaxAge(30);
-		response.addCookie(modifyCookie);
-		
+//		HttpSession session = request.getSession();
+//		UserDto user = (UserDto)session.getAttribute("userinfo");
+//		
+//		Cookie modifyCookie;
+//		if(res.getId().equals(user.getId())) 
+//			modifyCookie = new Cookie("modify", "true");
+//		else 
+//			modifyCookie = new Cookie("modify", "false");
+//		modifyCookie.setPath("/qna/"); // 쿠키를 유지할 시간 설정(단위 : 초) 
+//		modifyCookie.setMaxAge(30);
+//		response.addCookie(modifyCookie);
+//		
 		return res;
 	}
 	
