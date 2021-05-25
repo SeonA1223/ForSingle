@@ -120,7 +120,7 @@ public class ApiController {
 		dto.setMart(category_count[3]);
 		dto.setConvenience(category_count[4]);
 		
-		// 주변의 치킨집을 세기 위해 keyword 기반 검색
+		// 주변의 치킨집와 코인세탁소을 세기 위해 keyword 기반 검색
 		
 		for(int i = 0; i < keyword_size; i++) {
 			StringBuffer result2 = new StringBuffer();

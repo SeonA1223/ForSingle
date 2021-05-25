@@ -85,6 +85,7 @@ public class HouseDealController {
 		return new ResponseEntity<List<FavoriteDto>>(list, HttpStatus.OK);
 	}
 	
+	// 중복체크 할 것!
 	@PostMapping(value = "/deal")
 	public ResponseEntity<List<FavoriteDto>> regist(@RequestBody FavoriteDto dto, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
