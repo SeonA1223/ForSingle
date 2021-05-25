@@ -31,7 +31,7 @@ html, body {
 #container {
 	padding-left: 0px;
 	padding-right: 0px;
-	background: url('img/main.jpg');
+	background: url('img/background2.jpg');
 }
 
 .image-thumbnail {
@@ -41,7 +41,7 @@ html, body {
 }
 
 img.bookmark {
-	max-width: 30%;
+	max-width: 10%;
 	height: 100%;
 	position: absolute;
 	top: 50%;
@@ -176,8 +176,8 @@ img.bookmark {
 							    $(data).each(function(index, cur){
 						    		let str = 
 								    	`<span dongcode="${'${cur.code}'}" class="p-1">
-											<button type="button" class="btn btn-info btn-sm favorite_search">${'${cur.dong}'}</button>
-											<button type="button" class="btn btn-danger btn-sm delete">X</button>
+											<button type="button" class="btn btn-info btn-sm" fav="favorite_search">${'${cur.dong}'}</button>
+											<button type="button" class="btn btn-danger btn-sm" del="delete">X</button>
 										</span>`;
 										
 								    $("#favorite").append(str);
@@ -185,9 +185,9 @@ img.bookmark {
 							}//if
 						}//success
 					});//ajax
-					$(document).on("click", ".delete", function(){
+					$(document).on("click", "[del]", function(){
 						$.ajax({
-							url : '/deal/' + $(this).parent().attr('class'),
+							url : '/deal/' + $(this).parent().attr('dongcode'),
 							type: 'DELETE',
 							success: function(data) {
 								$(this).parent().remove();
@@ -196,8 +196,8 @@ img.bookmark {
 								    $(data).each(function(index, cur){
 							    		let str = 
 									    	`<span dongcode="${'${cur.code}'}" class="p-1">
-												<button type="button" class="btn btn-info btn-sm favorite_search">${'${cur.dong}'}</button>
-												<button type="button" class="btn btn-danger btn-sm delete">X</button>
+												<button type="button" class="btn btn-info btn-sm" fav="favorite_search">${'${cur.dong}'}</button>
+												<button type="button" class="btn btn-danger btn-sm" del="delete">X</button>
 											</span>`;
 									    $("#favorite").append(str);
 							    	})//each;
@@ -205,7 +205,7 @@ img.bookmark {
 							}//success
 						});//ajax
 					});//on
-					$(document).on("click", ".favorite_search", function(){
+					$(document).on("click", "[fav]", function(){
 						console.log($(this).parent().attr('dongcode'));
 						$.ajax({
 							url : '/maps/search/' + $(this).parent().attr('dongcode'),
@@ -213,12 +213,15 @@ img.bookmark {
 							success: function(data) {
 								if(data.length != 0){
 								$("#table_list").show();
+								$("#main_pg").show();
+								$("#noMap").hide();
 								$("#noAPT").empty();
 								$("#aptlist_table_data").empty();
 								let avg_lat = 0;
 								let avg_lng = 0;
 								let cnt = data.length;
 							    $(data).each(function(index, data){
+							    	console.log("check" + data);
 							    	let price;
 							    	if(data.rentMoney == 0){
 							    		price = '전세 ' + data.dealAmount;
@@ -226,17 +229,27 @@ img.bookmark {
 							    		price = '월세 ' + data.dealAmount + "/" + data.rentMoney;	
 							    	}
 							    	console.log(typeof data.lat);
+							    	console.log(data.rentMoney);
 							    	avg_lat += parseFloat(data.lat);
 							    	avg_lng += parseFloat(data.lng);
-							    	let str = ` <tr>
-							            <td>${'${index+1}'}</td>
-							            <td>${'${data.aptName}'}</td>
-							            <td>${'${price}'}</td>
-							            <td>${'${data.floor}'}</td>
-							            <td>${'${data.area'}}m²/td>
-							          </tr>
-							    	`
-							    	$("#aptlist_table_data").append(str);
+							    	 let str = `<tr class="houseinfo" data-toggle="modal" data-target="#aptModal"
+						                    aptName="${'${data.aptName}'}" area="${'${data.area}'}"  buildYear="${'${data.buildYear}'}" 
+						                    dealAmount = "${'${data.dealAmount}'}"  dealDay = "${'${data.dealDay}'}" dealMonth = "${'${data.dealMonth}'}"
+						                    	dealYear = "${'${data.dealYear}'}"
+						                    		dong = "${'${data.dong}'}"
+						                    			floor = "${'${data.floor}'}"
+						                    				jibun = "${'${data.jibun}'}"
+						                    					lat = "${'${data.lat}'}"
+						                    						lng = "${'${data.lng}'}"
+						                    							rentMoney = "${'${data.rentMoney}'}">
+									            <td>${'${index+1}'}</td>
+									            <td>${'${data.aptName}'}</td>
+									            <td>${'${price}'}</td>
+									            <td>${'${data.floor}'}</td>
+									            <td>${'${data.area}'}m²</td>
+									          </tr>`;
+									    	
+						                    $("#aptlist_table_data").append(str);
 							    })
 					
 							   showKakaoMap(data, avg_lat/cnt, avg_lng/cnt); 
@@ -270,10 +283,10 @@ img.bookmark {
 				<div id="noMap" style="width: 100%; height: 500px;"></div>
 			</div>
 		</div>
-		<div style="height: 15%;"></div>
+		<div style="height: 10%;"></div>
 	</div>
 	</div>
-	<div style="background-color: #6F4E37;" class="container-fluid">
+	<div style="background-color: #FFCFDA;" class="container-fluid">
 		<div class="row">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6" id="main_pg">
@@ -370,8 +383,8 @@ $(document).ready(function(){
 						    $(data).each(function(index, cur){
 					    		let str = 
 							    	`<span dongcode="${'${cur.code}'}" class="p-1">
-										<button type="button" class="btn btn-info btn-sm favorite_search">${'${cur.dong}'}</button>
-										<button type="button" class="btn btn-danger btn-sm delete">X</button>
+										<button type="button" class="btn btn-info btn-sm" fav="favorite_search">${'${cur.dong}'}</button>
+										<button type="button" class="btn btn-danger btn-sm" del ="delete">X</button>
 									</span>`;
 							    $("#favorite").append(str);
 					    	})//each;
