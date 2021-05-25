@@ -7,9 +7,8 @@
 <head>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-<title>header</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<script>src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style>
 html, body {
@@ -31,9 +30,10 @@ a {
 }
 </style>
 
-<script type="text/javascript">
-$(function(){
+<script>
+$(document).ready(function(){
 		var id = '${userinfo.id}';
+		console.log(id);
 		listData();
 
 
@@ -45,25 +45,59 @@ $(function(){
 			success: function(user){
 				console.log(user.id);
 				$("#table").empty();
-/* 				let list = 
-					`
-					<tr>
-					<th>ID</th>
-					<td><input type="text" name="id" id="id" value = "${'${user.id }'}"disabled> </td>
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td><input type="text" name="name" id="name"  value ="${'${user.name }'}"></td>
-				</tr>
-				<tr>
-					<th>주소</th>
-					<td><input type="text" id = "address" name="address" value = "${'${user.address }'}"></td>
-				</tr>
-				<tr>
-					<th>전화번호</th>
-					<td><input type="tel" id = "phoneNum" name="phoneNum" value = "${'${user.phoneNum }'}"></td>
-				</tr>
-				`; */
+ 				let list = `
+ 					<br> <br>
+ 					<form>
+ 				<div class="form-group"
+ 					style="display: flex; align-items: center; justify-content: center;">
+ 					
+ 					<table>
+ 						<tr>
+ 							<td style="width: 60px;"><b>아이디</b></td>
+ 							<td><input type="text" class="form-control" id="id" name="id" value = "${'${user.id }'}" disabled
+ 								style="width: 500px"></td>
+ 						</tr>
+ 					</table>
+ 				</div>
+ 				</br>
+ 				<div class="form-group"
+ 					style="display: flex; align-items: center; justify-content: center;">
+ 					
+ 					<table>
+ 						<tr>
+ 							<td style="width: 60px;"><b>이름</b></td>
+ 							<td><input type="text" class="form-control" id="name" name="name" value ="${'${user.name }'}"
+ 								style="width: 500px"></td>
+ 						</tr>
+ 					</table>
+ 				</div>
+ 				<br>
+ 				<div class="form-group"
+ 					style="display: flex; align-items: center; justify-content: center;">
+ 					<table>
+ 						<tr>
+ 							<td style="width: 60px;"><b>주소</b></td>
+ 							<td><input type="text" class="form-control" id="address" name="address" value = "${'${user.address }'}"
+ 								style="width: 500px"></td>
+ 						</tr>
+ 					</table>
+ 				</div>
+ 				<br>
+ 				<div class="form-group"
+ 					style="display: flex; align-items: center; justify-content: center;">
+ 					<table>
+ 						<tr>
+ 							<td style="width: 60px;"><b>전화번호</b></td>
+ 							<td><input type="text" class="form-control" id="phoneNum" name="phoneNum" value = "${'${user.phoneNum }'}"
+ 								style="width: 500px"></td>
+ 						</tr>
+ 					</table>
+ 				</div>
+
+ 				<br>
+ 			
+ 				</form>
+				`; 
 				
 				
 				
@@ -118,13 +152,18 @@ $(function(){
 <body>
 	<c:import url="../include/header.jsp"></c:import>
 
-	<div align="center" id="main">
-		<table id="table">
+	<div align="center" id="main" style="border-radius: 20px; background-color: whitesmoke;">
+		<div id="table">
 
-		</table>
-		<button id="modify">수정</button>
-		<button id="delete">탈퇴</button>
-		<a href="/">돌아가기</a>
+		</div>
+			<div class="form-group row" style="margin: auto; width: 10%;">
+ 					<button class="btn btn-primary" id="modify">수정</button>
+ 					<button id="delete" class="btn btn-danger">탈퇴</button>
+ 					<a href="/">돌아가기</a>
+ 				</div>
+		
+		
+		
 		
 	</div>
 
