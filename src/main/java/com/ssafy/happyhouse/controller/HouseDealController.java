@@ -91,8 +91,20 @@ public class HouseDealController {
 		HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userinfo");
 		System.out.println(dto.toString());
-		favoriteService.insertFavorite(dto);
 		List<FavoriteDto> list = favoriteService.getList(userDto.getId());
+		
+		boolean check = true;
+		for(FavoriteDto fDto : list) {
+			if(fDto.getCode().equals(dto.getCode())) {
+				check = false;
+				break;
+			}
+		}
+		
+		if(check) {
+			favoriteService.insertFavorite(dto);
+			list = favoriteService.getList(userDto.getId());
+		}
 		return new ResponseEntity<List<FavoriteDto>>(list, HttpStatus.OK);
 	}
 	
