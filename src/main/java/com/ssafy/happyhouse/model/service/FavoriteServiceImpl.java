@@ -20,8 +20,8 @@ public class FavoriteServiceImpl implements FavoriteService {
 	HouseDealDao houseDeal;
 	
 	@Override
-	public List<FavoriteDto> getList() throws Exception {
-		return favorite.list();
+	public List<FavoriteDto> getList(String id) throws Exception {
+		return favorite.list(id);
 	}
 	
 	@Override
@@ -30,17 +30,13 @@ public class FavoriteServiceImpl implements FavoriteService {
 	}
 
 	@Override
-	public boolean insertFavorite(String dong) throws Exception {
-		FavoriteDto dto = new FavoriteDto();
-		dto.setDong(dong);
+	public boolean insertFavorite(FavoriteDto dto) throws Exception {
 		return favorite.insert(dto);
 	}
 
 	@Override
-	public boolean deleteFavorite(String dong) throws Exception {
-		FavoriteDto dto = new FavoriteDto();
-		dto.setDong(dong);
-		return favorite.delete(dto);
+	public boolean deleteFavorite(String code) throws Exception {
+		return favorite.delete(code);
 	}
 
 }

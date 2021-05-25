@@ -2,15 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ssafy.happyhouse.model.dao.FavoriteDao">
 	<select id="list" resultType="FavoriteDto">
-		select * from favorite order by dong
+		select * 
+		from favorite 
+		where userid = #{id}
+		order by dong
 	</select>
 	
 	<insert id="insert">
-		insert into favorite (dong) values (#{dong}) 
+		insert into favorite (dong, code, userid) values (#{dong}, #{code}, #{userid}) 
 	</insert>
 	
 	<delete id="delete">
-		delete from favorite where dong = #{dong}
+		delete from favorite where code = #{code}
 	</delete>
 	
 	<select id="get" resultType="FavoriteDto">

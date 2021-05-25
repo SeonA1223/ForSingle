@@ -9,8 +9,8 @@ import com.ssafy.happyhouse.model.dto.FavoriteDto;
 @Mapper
 public interface FavoriteDao {
 	
-	List<FavoriteDto> list();
+	List<FavoriteDto> list(String id);
 	boolean insert(FavoriteDto dto);
-	boolean delete(FavoriteDto dto);
+	boolean delete(String code);
 	FavoriteDto get(String dong);
 }

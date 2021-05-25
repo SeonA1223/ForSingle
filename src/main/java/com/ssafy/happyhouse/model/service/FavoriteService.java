@@ -7,8 +7,8 @@ import com.ssafy.happyhouse.model.dto.HouseDealDto;
 
 public interface FavoriteService {
 	
-	List<FavoriteDto> getList() throws Exception;
+	List<FavoriteDto> getList(String id) throws Exception;
 	List<HouseDealDto> getAptInfoInDong(String dong) throws Exception;
-	boolean insertFavorite(String dong) throws Exception;
-	boolean deleteFavorite(String dong) throws Exception;
+	boolean insertFavorite(FavoriteDto dto) throws Exception;
+	boolean deleteFavorite(String dongcode) throws Exception;
 }
