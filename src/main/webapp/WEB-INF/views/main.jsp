@@ -116,7 +116,7 @@ img.bookmark {
       </div>
     </div>
   </div>
-  </div>
+
 	<c:import url="./include/header.jsp"></c:import>
 	<div class="container-fluid" id="container">
 		<div style="height: 200px;"></div>
@@ -175,11 +175,11 @@ img.bookmark {
 							if(data != null){
 							    $(data).each(function(index, cur){
 						    		let str = 
-								    	`<div class="${'${cur.code}'}">
+								    	`<span dongcode="${'${cur.code}'}" class="p-1">
 											<button type="button" class="btn btn-info btn-sm favorite_search">${'${cur.dong}'}</button>
 											<button type="button" class="btn btn-danger btn-sm delete">X</button>
-										</div>
-										<br>`;
+										</span>`;
+										
 								    $("#favorite").append(str);
 						    	})//each;
 							}//if
@@ -195,11 +195,10 @@ img.bookmark {
 								if(data != null){
 								    $(data).each(function(index, cur){
 							    		let str = 
-									    	`<div class="${'${cur.code}'}">
+									    	`<span dongcode="${'${cur.code}'}" class="p-1">
 												<button type="button" class="btn btn-info btn-sm favorite_search">${'${cur.dong}'}</button>
 												<button type="button" class="btn btn-danger btn-sm delete">X</button>
-											</div>
-											<br>`;
+											</span>`;
 									    $("#favorite").append(str);
 							    	})//each;
 								}//if
@@ -207,11 +206,14 @@ img.bookmark {
 						});//ajax
 					});//on
 					$(document).on("click", ".favorite_search", function(){
+						console.log($(this).parent().attr('dongcode'));
 						$.ajax({
-							url : '/maps/search/' + $(this).parent().attr('class'),
+							url : '/maps/search/' + $(this).parent().attr('dongcode'),
 							type: 'GET',
 							success: function(data) {
+								if(data.length != 0){
 								$("#table_list").show();
+								$("#noAPT").empty();
 								$("#aptlist_table_data").empty();
 								let avg_lat = 0;
 								let avg_lng = 0;
@@ -231,14 +233,23 @@ img.bookmark {
 							            <td>${'${data.aptName}'}</td>
 							            <td>${'${price}'}</td>
 							            <td>${'${data.floor}'}</td>
-							            <td>${'${data.area'}}m^2</td>
+							            <td>${'${data.area'}}m²/td>
 							          </tr>
 							    	`
 							    	$("#aptlist_table_data").append(str);
 							    })
-							    
-							    
+					
 							   showKakaoMap(data, avg_lat/cnt, avg_lng/cnt); 
+								}else{
+					            	 container.style.display = 'none';
+					            	 $("#noAPT").empty();
+					            	let str = `<h2>해당 지역에는 전월세 매물이 존재하지 않습니다.</h2>`;
+					            	$("#noAPT").append(str);
+					            	$("#main_pg").hide();
+					            	$("#noMap").show();
+					            }
+							    
+							    
 							}//success
 						});//ajax
 					})//on;
@@ -358,11 +369,10 @@ $(document).ready(function(){
 						if(data != null){
 						    $(data).each(function(index, cur){
 					    		let str = 
-							    	`<div class="${'${cur.code}'}">
+							    	`<span dongcode="${'${cur.code}'}" class="p-1">
 										<button type="button" class="btn btn-info btn-sm favorite_search">${'${cur.dong}'}</button>
 										<button type="button" class="btn btn-danger btn-sm delete">X</button>
-									</div>
-									<br>`;
+									</span>`;
 							    $("#favorite").append(str);
 					    	})//each;
 						}//if
@@ -377,6 +387,7 @@ $(document).ready(function(){
 			dataType:'json',
             success: function (data) {
             	if(data.length != 0){
+            	
                 $("#main_pg").show();
                 $("#noMap").hide();
                 $("#noAPT").empty();
@@ -403,8 +414,7 @@ $(document).ready(function(){
                     				jibun = "${'${data.jibun}'}"
                     					lat = "${'${data.lat}'}"
                     						lng = "${'${data.lng}'}"
-                    							rentMoney = "${'${data.rentMoney}'}"
-                    >
+                    							rentMoney = "${'${data.rentMoney}'}">
 			            <td>${'${index+1}'}</td>
 			            <td>${'${data.aptName}'}</td>
 			            <td>${'${price}'}</td>
@@ -418,6 +428,7 @@ $(document).ready(function(){
             	
             }else{
             	 container.style.display = 'none';
+            	 $("#noAPT").empty();
             	let str = `<h2>해당 지역에는 전월세 매물이 존재하지 않습니다.</h2>`;
             	$("#noAPT").append(str);
             	$("#main_pg").hide();
