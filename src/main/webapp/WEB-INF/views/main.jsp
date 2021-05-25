@@ -1,3 +1,5 @@
+<%@page import="com.ssafy.happyhouse.model.dto.UserDto"%>
+<%@page import="org.json.JSONObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -90,7 +92,7 @@ img.bookmark {
 			<div class="col-sm-4">
 				<label class="form-check-label" for="bookmark"> <input
 					type="checkbox" class="form-check-input" id="bookmark"
-					name="bookmark" value="something" checked>즐겨찾기 추가
+					name="bookmark" value="something" checked=false>즐겨찾기 추가
 				</label>
 			</div>
 		</div>
@@ -100,15 +102,92 @@ img.bookmark {
 			<div class="col-sm-1" id="boomark_img_div">
 				<img class="bookmark" src="${root}/img/bookmark.png">
 			</div>
-			<div class="col-sm-6">
-				<button type="button" class="btn btn-info btn-sm">button</button>
-				<button type="button" class="btn btn-info btn-sm">button</button>
-				<button type="button" class="btn btn-info btn-sm">button</button>
+			<div class="col-sm-6" id="favorite">
+				<script>
+				$(document).ready(function() {
+					$.ajax({
+						url :'/deal/fsearch',
+						type: 'GET',
+						dataType:'json',
+						success: function(data){
+							$("#favorite").empty();
+							if(data != null){
+							    $(data).each(function(index, cur){
+						    		let str = 
+								    	`<div class="${'${cur.code}'}">
+											<button type="button" class="btn btn-info btn-sm favorite_search">${'${cur.dong}'}</button>
+											<button type="button" class="btn btn-danger btn-sm delete">X</button>
+										</div>
+										<br>`;
+								    $("#favorite").append(str);
+						    	})//each;
+							}//if
+						}//success
+					});//ajax
+					$(document).on("click", ".delete", function(){
+						$.ajax({
+							url : '/deal/' + $(this).parent().attr('class'),
+							type: 'DELETE',
+							success: function(data) {
+								$(this).parent().remove();
+								$("#favorite").empty();
+								if(data != null){
+								    $(data).each(function(index, cur){
+							    		let str = 
+									    	`<div class="${'${cur.code}'}">
+												<button type="button" class="btn btn-info btn-sm favorite_search">${'${cur.dong}'}</button>
+												<button type="button" class="btn btn-danger btn-sm delete">X</button>
+											</div>
+											<br>`;
+									    $("#favorite").append(str);
+							    	})//each;
+								}//if
+							}//success
+						});//ajax
+					});//on
+					$(document).on("click", ".favorite_search", function(){
+						$.ajax({
+							url : '/maps/search/' + $(this).parent().attr('class'),
+							type: 'GET',
+							success: function(data) {
+								$("#table_list").show();
+								$("#aptlist_table_data").empty();
+								let avg_lat = 0;
+								let avg_lng = 0;
+								let cnt = data.length;
+							    $(data).each(function(index, data){
+							    	let price;
+							    	if(data.rentMoney == 0){
+							    		price = '전세 ' + data.dealAmount;
+							    	}else{
+							    		price = '월세 ' + data.dealAmount + "/" + data.rentMoney;	
+							    	}
+							    	console.log(typeof data.lat);
+							    	avg_lat += parseFloat(data.lat);
+							    	avg_lng += parseFloat(data.lng);
+							    	let str = ` <tr>
+							            <td>${'${index+1}'}</td>
+							            <td>${'${data.aptName}'}</td>
+							            <td>${'${price}'}</td>
+							            <td>${'${data.floor}'}</td>
+							            <td>${'${data.area'}}m^2</td>
+							          </tr>
+							    	`
+							    	$("#aptlist_table_data").append(str);
+							    })
+							    
+							    
+							   showKakaoMap(data, avg_lat/cnt, avg_lng/cnt); 
+							}//success
+						});//ajax
+					})//on;
+				});//ready
+				</script>
 			</div>
 
 		</div>
 		<div style="height: 50px;"></div>
-
+	
 		<div class="row">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-3">
@@ -194,6 +273,36 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$("#table_list").hide();
 	$("#dongCode_search").click(function(){
+		if($('#bookmark').is(":checked") == true) {
+			console.log('checked');
+			if('${userinfo}'){
+			}
+			$.ajax({
+				url: '/deal',
+				type: 'POST',
+				contentType: 'application/json', // 이거 안했어서 415 에러뜸.
+				data: JSON.stringify({
+					"dong": $("#dong option:selected").text(),
+					"code": $("#dong").val(),
+					"userid": '${userinfo.id}'
+				}),
+				success: function(data){
+					console.log('success');
+					$("#favorite").empty();
+					if(data != null){
+					    $(data).each(function(index, cur){
+				    		let str = 
+						    	`<div class="${'${cur.code}'}">
+									<button type="button" class="btn btn-info btn-sm favorite_search">${'${cur.dong}'}</button>
+									<button type="button" class="btn btn-danger btn-sm delete">X</button>
+								</div>
+								<br>`;
+						    $("#favorite").append(str);
+				    	})//each;
+					}//if
+				}//success
+			})//ajax;
+		}//if
 		let dongcode = $("#dong").val();
 		console.log(dongcode);
 		$.ajax({
