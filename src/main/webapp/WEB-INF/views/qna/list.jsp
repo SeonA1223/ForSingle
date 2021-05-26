@@ -9,28 +9,18 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <style>
-html, body {
-	width: 100%;
-	height: 100%;
-}
-
-.header {
-	width: 100%;
-}
-
-.header_td {
-	width: 100%;
-	table-layout: fixed;
-}
 button.write_locate {
 	position : relative;
 	left: 90%;
 }
+
+
 </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
 $(document).ready(function(){
+	
 	listData();
 	function listData(){
 		$.ajax({
@@ -81,9 +71,10 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<c:import url="../include/header.jsp" ></c:import>
+	<c:import url="../include/header2.jsp"></c:import>
 
-	<div class="container-sm pt-5">
+	<div class="p-3"></div>
+	<div class="container pt-5">
 		<h2>QnA 게시판</h2>
 		<div style="height: 500px" class = "container-sm pt-5">
 		  <table class="table pt-3">
@@ -101,7 +92,7 @@ $(document).ready(function(){
 
 		    </tbody>
 		  </table>
-  		</div class="container-sm pt-3">
+  		</div class="container pt-3">
 		   <button type="button" id="writeButton" class="btn btn-dark write_locate">글 작성</button>
   		</div>
 	</div>

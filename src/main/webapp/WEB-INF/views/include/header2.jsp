@@ -47,6 +47,39 @@ a {
 	text-decoration: none;
 }
 
+  #mainNav .navbar-brand {
+    color: rgba(0, 0, 0, 0.7);
+  }
+  #mainNav .navbar-brand:hover {
+    color: #000;
+  }
+  #mainNav .navbar-nav .nav-item .nav-link {
+    color: rgba(0, 0, 0, 0.7);
+    padding: 0 1rem;
+  }
+  #mainNav .navbar-nav .nav-item .nav-link:hover {
+    color: #fff;
+  }
+  #mainNav .navbar-nav .nav-item:last-child .nav-link {
+    padding-right: 0;
+  }
+  #mainNav.navbar-shrink {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+  }
+  #mainNav.navbar-shrink .navbar-brand {
+    color: #212529;
+  }
+  #mainNav.navbar-shrink .navbar-brand:hover {
+    color: #f4623a;
+  }
+  #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link {
+    color: #212529;
+  }
+  #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link:hover {
+    color: #f4623a;
+  }
+
 
 </style>
 <script>
@@ -138,7 +171,7 @@ a {
 	</div>
 	
 	<div class="bgc">
-		  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+		  <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="/">For Single</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>

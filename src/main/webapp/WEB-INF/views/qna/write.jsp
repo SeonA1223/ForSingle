@@ -8,20 +8,40 @@
 <meta charset="UTF-8">
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link
+	href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
+	rel="stylesheet" type="text/css" />
+<!-- SimpleLightbox plugin CSS-->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
+@font-face {
+	src: url('fonts/NanumBarunGothic.ttf');
+	font-family: "NanumBarunGothic";
+}
+
+@font-face {
+	src: url('fonts/NanumSquareRoundB.ttf');
+	font-family: "NanumSquareRoundB";
+}
+
 html, body {
-	width: 100%;
-	height: 100%;
-}
-
-.header {
-	width: 100%;
-}
-
-.header_td {
-	width: 100%;
-	table-layout: fixed;
+	font-family: 'NanumBarunGothic';
 }
 button.submit {
 	position : relative;
@@ -54,7 +74,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<c:import url="../include/header.jsp" ></c:import>
+<div class="p-3"></div>
 	<div class = "container-sm pt-5">
 		<h2>글 작성</h2>
 		<div class = "container-sm pt-5" id="writePost">

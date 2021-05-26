@@ -68,8 +68,8 @@ html, body {
 
 	<!-- Sign Up Form -->
 
-
-	<div class="wrapper" style="background-color: lightslategrey;">
+<div style="height:100px;"></div>
+	<div class="wrapper">
 		<br> <br>
 		<div class="container"
 			style="border-radius: 20px; background-color: whitesmoke;">
