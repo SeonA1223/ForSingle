@@ -20482,7 +20482,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 insert into user (id, pwd, name, address, phoneNum, isManager) values ('ssafy', 'ssafy', 'ssafy', 'ssafy@ssafy.com', '01012345678', true);
-insert into user (id, pwd, name, address, phoneNum, isManager) values ('ssafy2', 'ssafy2', 'ssafy2', 'ssafy2@ssafy.com', '01012345678', true);
+insert into user (id, pwd, name, address, phoneNum, isManager) values ('ssafy2', 'ssafy2', 'ssafy2', 'ssafy2@ssafy.com', '01012345678', false);
 
 select * from user;
 
@@ -20498,7 +20498,7 @@ CREATE TABLE IF NOT EXISTS `favorite` (
 
 delete from favorite;
 
-insert into favorite(dong, code, userid) values ('자양동', '자양동', 'ssafy'), ('노형동', '노형동', 'ssafy2');
+insert into favorite(dong, code, userid) values ('자양동', '1121510500', 'ssafy'), ('노형동', '5011012200', 'ssafy2');
 
 select * from favorite;
 select * from dongcode where dong like "%자양동%";
@@ -20523,6 +20523,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
     PRIMARY KEY (`num`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+insert into answer (title, id, descrip) values ("Re: 주요 범죄 관련 답변입니다.", "ssafy", "주요 범죄는 살인, 강간, 절도, 방화 등의 강력범죄, 절도범죄, 폭력범죄에 해당하는 범죄들을 말합니다.");
 select * from answer;
 
 -- answernum 비워두면 null 들어감.
@@ -20542,6 +20543,8 @@ CREATE TABLE IF NOT EXISTS `QnA` (
     FOREIGN KEY (answernum) REFERENCES answer (num)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+insert into QnA (title, id, descrip) values ("제주시 월세 관련 질문입니다.", "ssafy2", "제주시 주변에 보증금을 늘려서 월세를 줄일 수 있는 집이 있을가요?");
+insert into QnA (title, id, descrip, answernum) values ("주요 범죄 건수 관련 질문입니다.", "ssafy2", "주요 범죄 건수는 어떤 범죄들을 세어놓은 것인가요?", 1);
 select * from QnA;
 
 DROP TABLE IF EXISTS `crime`;
