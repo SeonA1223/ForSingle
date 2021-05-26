@@ -16,11 +16,19 @@
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<style>
+
+<style type="text/css">
+@font-face {
+	src: url('fonts/NanumBarunGothic.ttf');
+	font-family:"NanumBarunGothic";
+}
+html, body {
+	font-family : 'NanumBarunGothic';
+}
 html, body {
 	width: 100%;
 	height: 100%;
-	
+
 }
 
 .header {

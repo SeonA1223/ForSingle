@@ -2,16 +2,28 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>HappyHouse</title>
 <style type="text/css">
+@font-face {
+	src: url('fonts/NanumBarunGothic.ttf');
+	font-family:"NanumBarunGothic";
+}
+@font-face {
+	src: url('fonts/NanumSquareRoundB.ttf');
+	font-family:"NanumSquareRoundB";
+}
+html, body {
+	font-family : 'NanumBarunGothic';
+}
 a{
 	text-decoration : none;
 }
@@ -115,7 +127,7 @@ a{
 				</td>
 				<td class="header_td">
 					<div style="vertical-align: middle;">
-						<h3 class="text-center" onclick="main" style="color: white; float: left;">For Single<h3>
+						<h2 class="text-center" style="color: white; float: left; font-family : 'NanumSquareRoundB';">For Single<h2>
 					</div>
 				</td>
 
