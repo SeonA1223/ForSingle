@@ -35,9 +35,9 @@ button.btn-detail {
 	left: 75%;
 }
 
-/* button.write_locate_button{
-	left : 80%;
-} */
+ button.write_locate{
+	left : 70%;
+} 
 button.submit {
 	left: 93%;
 }
@@ -366,7 +366,7 @@ button.submit {
 			</div>
 		</div>
 
-		<c:if test="${sessionScope.useinfo.isManager == 1}">
+		
 			<!-- 답변 수정 삭제  -->
 			<button type="button" id="ModButton"
 				class="btn btn-detail btn-success write_locate">수정</button>
@@ -375,7 +375,7 @@ button.submit {
 			<button type="button" id="writeButton"
 				class="btn btn-detail  btn-light write_locate movelist">목록
 				이동</button>
-		</c:if>
+		
 	</div>
 
 

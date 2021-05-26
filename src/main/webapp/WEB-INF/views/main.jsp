@@ -108,8 +108,15 @@ html, body {
 	<c:import url="./include/header.jsp"></c:import>
 	<header class="masthead">
 		<div class="container px-4 px-lg-5 h-100 mt-5 pt-3">
-			<div
-				class="row gx-4 gx-lg-5 h-20 align-items-center justify-content-center text-center">
+			<div class="row gx-4 gx-lg-5 h-20 align-items-center justify-content-center text-center">
+				<div class="col-lg-8 align-self-end">
+					<h3>For Single은 전국 모든 전월세에 대한 정확하고 솔직한 정보만을 빠르게 제공합니다. </h3>
+					<h3>	안전과 근처 편의시설 서비스 정보 또한 제공하여 편리하게 자신만의 보금자리를 마련하세요!
+					 </h3>
+					 <br/>
+				</div>
+			</div>
+			<div class="row gx-4 gx-lg-5 h-20 align-items-center justify-content-center text-center">
 				<div class="col-lg-8 align-self-end">
 					<div class="row">
 						<div class="col-sm-1"></div>
