@@ -28,14 +28,17 @@ public class CrimePopulServiceImpl implements CrimePopulService {
 		
 		if(left2.equals("11") || left2.equals("26") || left2.equals("27") || 
 				left2.equals("28") || left2.equals("29") || left2.equals("30") || 
-				left2.equals("31") || left2.equals("36"))
+				left2.equals("31") || left2.equals("36")) {
 			gugun_code = left2 + "11000000";
+			System.out.println(gugun_code);
+		}
 		
 		// gugun_code로 popul을 먼저 가져온다.
 		PopulDto popul = sqlSession.getMapper(PopulDao.class).getPopul(gugun_code);
 		
 		if(popul == null) return null;
 		
+		System.out.println(popul.getSiname());
 		CrimeDto crime = sqlSession.getMapper(CrimeDao.class).getCrime(popul.getSiname());
 		
 		map.put("crime", Integer.toString(crime.getCrimecount()));

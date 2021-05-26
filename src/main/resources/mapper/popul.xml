@@ -3,7 +3,7 @@
 <mapper namespace="com.ssafy.happyhouse.model.dao.PopulDao">
 
 	<select id="getPopul" resultType="PopulDto">
-		select * from popul where gugun_code = #{gugun_code}
+		select * from popul where left(gugun_code, 5) = left(#{gugun_code}, 5)
 	</select>
 	
 	<select id="getPopulList" resultType="PopulDto">
