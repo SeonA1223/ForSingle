@@ -18,18 +18,7 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
 <style type="text/css">
-@font-face {
-	src: url('fonts/NanumBarunGothic.ttf');
-	font-family: "NanumBarunGothic";
-}
 
-html, body {
-	font-family: 'NanumBarunGothic';
-}
-
-.fa-trash:before {
-    content: "\f1f8";
-}
 
 </style>
 
@@ -107,16 +96,20 @@ html, body {
 
 	<c:import url="./include/header.jsp"></c:import>
 	<header class="masthead">
+	<c:if test="${userinfo eq null}">
 		<div class="container px-4 px-lg-5 h-100 mt-5 pt-3">
-			<div class="row gx-4 gx-lg-5 h-20 align-items-center justify-content-center text-center">
-				<div class="col-lg-8 align-self-end">
-					<h3>For Single은 전국 모든 전월세에 대한 정확하고 솔직한 정보만을 빠르게 제공합니다. </h3>
-					<h3>	안전과 근처 편의시설 서비스 정보 또한 제공하여 편리하게 자신만의 보금자리를 마련하세요!
-					 </h3>
+			<div style="height: 25%; "></div>
+			<div class="row gx-4 gx-lg-5 h-20 align-items-center justify-content-center text-center" style="background-color: #7d6a5ab8; color: #fff;">
+				<div class="col-lg-12 align-self-end pt-5" id="forsingleInfo">
+					<h3>For Single은 전국 모든 전월세에 대해 솔직정확한 정보만을 제공합니다. </h3>
+					<h3>안전과 근처 편의시설 관련 정보 또한 제공하므로 보금자리를 더욱 편하게 마련하세요! </h3>
 					 <br/>
 				</div>
 			</div>
-			<div class="row gx-4 gx-lg-5 h-20 align-items-center justify-content-center text-center">
+			</div>
+			</c:if>
+			<c:if test="${userinfo ne null}">
+			<div class="row gx-4 gx-lg-5 h-20  mt-5  align-items-center justify-content-center text-center">
 				<div class="col-lg-8 align-self-end">
 					<div class="row">
 						<div class="col-sm-1"></div>
@@ -142,7 +135,7 @@ html, body {
 								</select>
 							</form>
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-1">
 							<button type="button" id="dongCode_search" class="btn btn-dark">검색</button>
 						</div>
 						<div class="row mb-2">
@@ -392,19 +385,22 @@ html, body {
 				</div>
 
 				<div class="row">
-					<div class="col-sm-1"></div>
-					<div class="col-sm-5">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">
 						<div id="map" style="width: 100%; height: 500px;"></div>
 						<div id="noMap" style="width: 100%; height: 500px;"></div>
 					</div>
 					<div id="crimeDiv" class="col-sm-3"
-						style="width: 50%; height: 150px;">
+						style="width: 30%; height: 150px;">
 						<!-- 주요 범죄 발생 건수 -->
 
 					</div>
+					<div class="col-sm-3"></div>
 				</div>
 			</div>
-		</div>
+		
+		</c:if>
+		
 
 	</header>
 
@@ -441,8 +437,9 @@ html, body {
 			</div>
 			</div>
 
-		</div>
+		
 	</section>
+	
 </body>
 <script
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=93658c6b7f4593d6432bd13294164f05&libraries=services"></script>
@@ -542,9 +539,9 @@ $(document).ready(function(){
             		$("#crimeDiv").show();
                 	$("#crimeDiv").empty();
                 	let ct = `
-                		<canvas id="crimeChart" style="background-color :rgb(255 254 254 / 90%);"></canvas>
+                		<canvas id="crimeChart" style="width:300px; height:150px; background-color :rgb(255 254 254 / 90%);"></canvas>
         				<br>
-        				<canvas id="populChart" style="background-color : rgb(255 254 254 / 90%);"></canvas>
+        				<canvas id="populChart" style="width:300px; height:150px; background-color : rgb(255 254 254 / 90%);"></canvas>
         				`;
                 	$("#crimeDiv").append(ct);
                 	// 인구수 단위 변경 생각해보기. - 만 단위로 나눠보자. => 너무 작아진다. 백 단위로 변경

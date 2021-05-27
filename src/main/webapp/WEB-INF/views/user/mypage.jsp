@@ -151,7 +151,8 @@ $(document).ready(function(){
 	})
 	
 	$("#delete").click(function(){
-		if(confirm("진짜 삭제하시겠습니까?")){
+		console.log(id);
+		if(confirm("진짜 탈퇴하시겠습니까?")){
 			$.ajax({
 				url : '/user/mypage/list/' + id,
 				type: 'DELETE',

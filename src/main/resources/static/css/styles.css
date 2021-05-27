@@ -73,10 +73,15 @@ hr:not([size]) {
   height: 1px;
 }
 
+@font-face {
+	src: url('fonts/NanumBarunGothic.ttf');
+	font-family: "NanumBarunGothic";
+}
+
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "NanumBarunGothic" "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 500;
   line-height: 1.2;
 }
@@ -5606,7 +5611,18 @@ textarea.form-control-lg {
   background-color: #000;
   border-radius: 0.25rem;
 }
+@font-face {
+	src: url('fonts/NanumBarunGothic.ttf');
+	font-family: "NanumBarunGothic";
+}
 
+html, body {
+	font-family: 'NanumBarunGothic';
+}
+
+#forsingleInfo{
+	font-family: 'NanumBarunGothic';
+}
 .popover {
   position: absolute;
   top: 0;
