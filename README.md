@@ -49,6 +49,7 @@
 <br/>
 
 ### 시스템 구조도
+
 **frontend : JSP**
 
 **backend : Spring mvc** 
@@ -82,7 +83,6 @@
 #### 특정 매물 상세 페이지
 
 <img src="./images/상세페이지.jpg" width="800px">
-<br/>
 <img src="./images/매물검색결과.jpg" width="800px">
 <br/>
 
@@ -113,6 +113,6 @@
 
 #### QnA 답변 수정 및 삭제
 
-<img src="./images/QnA게시글목록.jpg" width="800px">
+<img src="./images/QnA답변수정삭제.jpg" width="800px">
 <br/>
 
