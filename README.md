@@ -17,9 +17,11 @@
 
 
 ### 시스템 구조도
-frontend : jsp
-backend : spring mvc 
-data : 공공데이터포털
+**frontend : JSP**
+
+**backend : Spring mvc** 
+
+**data : 공공데이터포털 - 국토교통부_연립다세대 전월세 자료 활용**
 
 <img src="./images/시스템구조도.png">
 
@@ -48,7 +50,7 @@ data : 공공데이터포털
 
 #### QnA 목록
 
-<img src="./images/QnA게시글목록.jpg"">
+<img src="./images/QnA게시글목록.jpg">
 
 #### QnA 작성
 
