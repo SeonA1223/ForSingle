@@ -69,50 +69,50 @@
 
 #### 매물검색결과 
 
-<img src="./images/매물리스트.jpg" >
+<img src="./images/매물리스트.jpg" width="800px">
 <br/>
 
 
 #### 매물리스트
 
-<img src="./images/매물리스트.jpg">
+<img src="./images/매물리스트.jpg" width="800px">
 <br/>
 
 
 #### 특정 매물 상세 페이지
 
-<img src="./images/상세페이지.jpg" >
+<img src="./images/상세페이지.jpg" width="800px">
 <br/>
-<img src="./images/매물검색결과.jpg">
+<img src="./images/매물검색결과.jpg" width="800px">
 <br/>
 
 
 #### QnA 목록
 
-<img src="./images/QnA게시글목록.jpg">
+<img src="./images/QnA게시글목록.jpg" width="800px">
 <br/>
 
 
 #### QnA 작성
 
-<img src="./images/QnA작성.jpg">
+<img src="./images/QnA작성.jpg" width="800px">
 <br/>
 
 
 #### QnA 수정 및 삭제
 
-<img src="./images/QnA수정삭제.jpg">
+<img src="./images/QnA수정삭제.jpg" width="800px">
 <br/>
 
 
 #### QnA 답변 작성
 
-<img src="./images/QnA답변작성.jpg">
+<img src="./images/QnA답변작성.jpg" width="800px">
 <br/>
 
 
 #### QnA 답변 수정 및 삭제
 
-<img src="./images/QnA게시글목록.jpg">
+<img src="./images/QnA게시글목록.jpg" width="800px">
 <br/>
 
