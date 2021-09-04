@@ -63,7 +63,7 @@
 
 #### 전/월세 매물 찾기 메인페이지
 
-<img src="./images/메인페이지.jpg" width="500px">
+<img src="./images/메인페이지.jpg" width="800px">
 <br/>
 
 
