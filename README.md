@@ -21,47 +21,47 @@ frontend : jsp
 backend : spring mvc 
 data : 공공데이터포털
 
-<img src="./images/시스템구조도.png" width="200px">
+<img src="./images/시스템구조도.png">
 
 
 ###화면 흐름도
 
 #### 전/월세 매물 찾기 메인페이지
 
-<img src="./images/메인페이지.jpg" width="200px">
+<img src="./images/메인페이지.jpg">
 
 #### 매물검색결과 
 
-<img src="./images/매물리스트.jpg" width="200px">
+<img src="./images/매물리스트.jpg" >
 
 #### 매물리스트
 
-<img src="./images/매물리스트.jpg" width="200px">
+<img src="./images/매물리스트.jpg">
 
 #### 특정 매물 상세 페이지
 
-<img src="./images/상세페이지.jpg" width="200px">
-
-<img src="./images/매물검색결과.jpg" width="200px">
+<img src="./images/상세페이지.jpg" >
+<br/>
+<img src="./images/매물검색결과.jpg">
 
 #### QnA CRUD
 
 #### QnA 목록
 
-<img src="./images/QnA게시글목록.jpg" width="200px">
+<img src="./images/QnA게시글목록.jpg"">
 
 #### QnA 작성
 
-<img src="./images/QnA작성.jpg" width="200px">
+<img src="./images/QnA작성.jpg">
 
 #### QnA 수정 및 삭제
 
-<img src="./images/QnA수정삭제.jpg" width="200px">
+<img src="./images/QnA수정삭제.jpg">
 
 #### QnA 답변 작성
 
-<img src="./images/QnA답변작성.jpg" width="200px">
+<img src="./images/QnA답변작성.jpg">
 
 #### QnA 답변 수정 및 삭제
 
-<img src="./images/QnA게시글목록.jpg" width="200px">
+<img src="./images/QnA게시글목록.jpg">
