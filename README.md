@@ -46,6 +46,7 @@
 
 - 범죄율 차트 UI
 
+<br/>
 
 ### 시스템 구조도
 **frontend : JSP**
@@ -56,43 +57,62 @@
 
 <img src="./images/시스템구조도.png">
 
+<br/>
 
 ### 화면 흐름도
 
 #### 전/월세 매물 찾기 메인페이지
 
 <img src="./images/메인페이지.jpg">
+<br/>
+
 
 #### 매물검색결과 
 
 <img src="./images/매물리스트.jpg" >
+<br/>
+
 
 #### 매물리스트
 
 <img src="./images/매물리스트.jpg">
+<br/>
+
 
 #### 특정 매물 상세 페이지
 
 <img src="./images/상세페이지.jpg" >
 <br/>
 <img src="./images/매물검색결과.jpg">
+<br/>
+
 
 #### QnA 목록
 
 <img src="./images/QnA게시글목록.jpg">
+<br/>
+
 
 #### QnA 작성
 
 <img src="./images/QnA작성.jpg">
+<br/>
+
 
 #### QnA 수정 및 삭제
 
 <img src="./images/QnA수정삭제.jpg">
+<br/>
+
 
 #### QnA 답변 작성
 
 <img src="./images/QnA답변작성.jpg">
+<br/>
+
 
 #### QnA 답변 수정 및 삭제
 
 <img src="./images/QnA게시글목록.jpg">
+<br/>
+
